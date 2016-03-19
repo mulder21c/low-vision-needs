@@ -1,0 +1,2440 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ko" prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#" typeof="bibo:Document">
+<head>
+	<meta content="en" lang="" property="dc:language">
+	<title>
+		저시력자를 위한 접근성 요구사항들
+	</title>
+	<meta charset="utf-8">
+	<style>
+		/* --- ISSUES/NOTES --- */
+		div.issue-title, div.note-title , div.ednote-title, div.warning-title {
+		  padding-right:  1em;
+		  min-width: 7.5em;
+		  color: #b9ab2d;
+		}
+		div.issue-title { color: #e05252; }
+		div.note-title, div.ednote-title { color: #2b2; }
+		div.warning-title { color: #f22; }
+		div.issue-title span, div.note-title span, div.ednote-title span, div.warning-title span {
+		  text-transform: uppercase;
+		}
+		div.note, div.issue, div.ednote, div.warning {
+		  margin-top: 1em;
+		  margin-bottom: 1em;
+		}
+		.note > p:first-child, .ednote > p:first-child, .issue > p:first-child, .warning > p:first-child { margin-top: 0 }
+		.issue, .note, .ednote, .warning {
+		  padding: .5em;
+		  border-left-width: .5em;
+		  border-left-style: solid;
+		}
+		div.issue, div.note , div.ednote,  div.warning {
+		  padding: 1em 1.2em 0.5em;
+		  margin: 1em 0;
+		  position: relative;
+		  clear: both;
+		}
+		span.note, span.ednote, span.issue, span.warning { padding: .1em .5em .15em; }
+
+		.issue {
+		  border-color: #e05252;
+		  background: #fbe9e9;
+		}
+		.note, .ednote {
+		  border-color: #52e052;
+		  background: #e9fbe9;
+		}
+
+		.warning {
+		  border-color: #f11;
+		  border-right-width: .2em;
+		  border-top-width: .2em;
+		  border-bottom-width: .2em;
+		  border-style: solid;
+		  background: #fbe9e9;
+		}
+
+		.warning-title:before{
+		  content: "⚠"; /*U+26A0 WARNING SIGN*/
+		  font-size: 3em;
+		  float: left;
+		  height: 100%;
+		  padding-right: .3em;
+		  vertical-align: top;
+		  margin-top: -0.5em;
+		}
+
+		li.task-list-item {
+		  list-style: none;
+		}
+
+		input.task-list-item-checkbox {
+		  margin: 0 0.35em 0.25em -1.6em;
+		  vertical-align: middle;
+		}
+	</style>
+	<link href="styles/style.css" rel="stylesheet" type="text/css">
+	<style>
+		/*****************************************************************
+		* ReSpec 3 CSS
+		* Robin Berjon - http://berjon.com/
+		*****************************************************************/
+
+		/* --- INLINES --- */
+		em.rfc2119 {
+		  text-transform:  lowercase;
+		  font-variant:      small-caps;
+		  font-style:      normal;
+		  color:            #900;
+		}
+
+		h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+		h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+		  border: none;
+		}
+
+		dfn {
+		  font-weight:    bold;
+		}
+
+		a.internalDFN {
+		  color:  inherit;
+		  border-bottom:  1px solid #99c;
+		  text-decoration:    none;
+		}
+
+		a.externalDFN {
+		  color:  inherit;
+		  border-bottom:  1px dotted #ccc;
+		  text-decoration:    none;
+		}
+
+		a.bibref {
+		  text-decoration:    none;
+		}
+
+		cite .bibref {
+		  font-style: normal;
+		}
+
+		code {
+		  color:  #C83500;
+		}
+
+		/* --- TOC --- */
+		.toc a, .tof a {
+		  text-decoration:    none;
+		}
+
+		a .secno, a .figno {
+		  color:  #000;
+		}
+
+		ul.tof, ol.tof {
+		  list-style: none outside none;
+		}
+
+		.caption {
+		  margin-top: 0.5em;
+		  font-style:   italic;
+		}
+
+		/* --- TABLE --- */
+		table.simple {
+		  border-spacing: 0;
+		  border-collapse:    collapse;
+		  border-bottom:  3px solid #005a9c;
+		}
+
+		.simple th {
+		  background: #005a9c;
+		  color:  #fff;
+		  padding:    3px 5px;
+		  text-align: left;
+		}
+
+		.simple th[scope="row"] {
+		  background: inherit;
+		  color:  inherit;
+		  border-top: 1px solid #ddd;
+		}
+
+		.simple td {
+		  padding:    3px 10px;
+		  border-top: 1px solid #ddd;
+		}
+
+		.simple tr:nth-child(even) {
+		  background: #f0f6ff;
+		}
+
+		/* --- DL --- */
+		.section dd > p:first-child {
+		  margin-top: 0;
+		}
+
+		.section dd > p:last-child {
+		  margin-bottom: 0;
+		}
+
+		.section dd {
+		  margin-bottom:  1em;
+		}
+
+		.section dl.attrs dd, .section dl.eldef dd {
+		  margin-bottom:  0;
+		}
+
+		@media print {
+		  .removeOnSave {
+			  display: none;
+		  }
+		}
+		.translate-forword{
+			border:1px solid #ccc;
+			margin-bottom:2em;
+			padding:1em;
+			background-color:#eaeaea;
+		}
+		[lang="en"],
+		:lang(en){color:#bbb !important}
+		.trans-ko [lang="en"],
+		.trans-ko :lang(en){display:none}
+		#translationSwitch{overflow:visible;position:fixed;top:5em;right:2em}
+		#translationSwitch:after{clear:both;display:table;content:''}
+		#translationSwitch button{float:left;background-color:#fafafa;border:1px solid #555;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;font-size:1em;cursor:pointer}
+		button#only-ko{border-right:0;border-top-right-radius:0;border-bottom-right-radius:0}
+		button#ko-en{border-top-left-radius:0;border-bottom-left-radius:0}
+	</style>
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+	<link href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD" rel="stylesheet">
+	<!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+	<script id="initialUserConfig" type="application/json">
+		{
+			"specStatus": "FPWD",
+			"noRecTrack": true,
+			"useExperimentalStyles": true,
+			"shortName": "low-vision-needs",
+			"publishDate": "2016-03-17",
+			"copyrightStart": "2016",
+			"edDraftURI": "http://w3c.github.io/low-vision-a11y-tf/requirements.html",
+			"editors": [{
+				"name": "Jim Allan",
+				"company": "Texas School for the Blind and Visually Impaired"
+			}, {
+				"name": "Andrew Kirkpatrick",
+				"company": "Adobe"
+			}, {
+				"name": "Shawn Lawton Henry",
+				"company": "TAdER Project"
+			}],
+			"wg": "Web Content Accessibility Guidelines",
+			"wgURI": "http://www.w3.org/WAI/GL/",
+			"wgPublicList": "public-low-vision-a11y-tf",
+			"wgPatentURI": "http://www.w3.org/2004/01/pp-impl/35422/status",
+			"localBiblio": {
+				"WHO-VI": {
+					"title": "Visual impairment and blindness, Fact Sheet N°282",
+					"href": "http://www.who.int/mediacentre/factsheets/fs282/en/",
+					"authors": ["World Health Organization (WHO)"],
+					"status": "Updated August 2014"
+				}
+			}
+		}
+	</script>
+	<script>
+		(function(){
+			var cookies={getItem:function(key){if(!key)return null;return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*"+encodeURIComponent(key).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=\\s*([^;]*).*$)|^.*$"),"$1"))||null},setItem:function(key,value,expire,domain,path,secure){if(!key||/^(?:expires|max\-age|path|domain|secure)$/i.test(key))return false;var datas="";datas+=encodeURIComponent(key);datas+="=";datas+=encodeURIComponent(value);if(expire)switch(expire.constructor){case String:datas+="; expires=";datas+=expire;break;case Date:datas+="; expires=";datas+=expire.toUTCString();break;default:break}datas+=domain?"; domain="+domain:"";datas+=path?"; path="+path:"";datas+=secure?"; secure="+secure:"";document.cookie=datas;return true},removeItem:function(key,domain,path){if(!key)return false;document.cookie=encodeURIComponent(key)+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT"+(domain?"; domain="+domain:"")+(path?"; path="+path:"");return true},hasItem:function(key){if(!key)return false;return(new RegExp("(?:^|;\\s*)"+encodeURIComponent(key).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=")).test(document.cookie)},clear:function(){var nameList=document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g,"").split(/\s*(?:\=[^;]*)?;\s*/);for(var i=-1,name=null;name=nameList[++i];){if(/^_ga.*|^wcs.*|^usrID/gi.test(name)===true)continue;this.removeItem(decodeURIComponent(name),constant.GLOBAL_DOMAIN);this.removeItem(decodeURIComponent(name),constant.GLOBAL_DOMAIN,"/")}}};
+
+			function toggleTrans(){
+				var currentTrans = cookies.getItem('trans') ? cookies.getItem('trans') : 'ko-en';
+				var btn = document.getElementById('toggleTrans');
+				if(currentTrans == 'ko-en'){
+					btn.textContent = '대역 보기';
+					cookies.setItem('trans', 'ko');
+					document.documentElement.className = 'trans-ko';
+				}else{
+					btn.textContent = '번역만 보기';
+					cookies.setItem('trans', 'ko-en');
+					document.documentElement.className = 'trans-ko-en';
+				}
+			}
+
+			function transInit(){
+				var currentTrans = cookies.getItem('trans') ? cookies.getItem('trans') : 'ko-en';
+				var btn = document.createElement('button');
+				btn.setAttribute('id', 'toggleTrans');
+				btn.textContent = currentTrans == 'ko-en' ? '번역만 보기' : '대역 보기';
+				document.documentElement.className = currentTrans == 'ko-en' ? 'trans-ko-en' : 'trans-ko';
+				if(window.addEventListener){
+					btn.addEventListener('click', toggleTrans, false);
+				}else{
+					btn.attachEvent('onclick', toggleTrans);
+				}
+				document.getElementById('translationSwitch').appendChild(btn);
+			}
+
+			if(window.addEventListener){
+				window.addEventListener('load', transInit, false);
+			}else{
+				window.attachEvent('onload', transInit);
+			}
+		})();
+	</script>
+</head>
+<body class="h-entry toc-sidebar" id="respecDocument" role="document">
+	<aside class="translate-forword">
+		본 번역본은 <a href="https://www.w3.org/TR/2016/WD-low-vision-needs-20160317/">https://www.w3.org/TR/2016/WD-low-vision-needs-20160317/</a>에 대한 번역본으로, 개인번역이므로 다량의 오역이 존재합니다 = _=a<br>
+		오역에 대해 <a href="mailto:publisher@publihser.name">publisher@publihser.name</a>으로 메일을 주시면 반영토록 하겠습니다. :)<br>
+		- 번역자 : 멀더끙 (mulder21c)
+	</aside>
+	<span id="translationSwitch"></span>
+	<div class="head" id="respecHeader" role="contentinfo">
+		<p>
+			<a class="logo" href="http://www.w3.org/"><img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"></a>
+		</p>
+		<h1 class="title p-name" id="title" property="dcterms:title">
+			저시력자를 위한 접근성 요구사항
+		</h1>
+		<h2 id="w3c-first-public-working-draft-17-march-2016">
+			<abbr title="World Wide Web Consortium">W3C</abbr> 첫번째 공개 규격 초안 <time class="dt-published" datetime="2016-03-17" property="dcterms:issued">2016년 3월 17일</time>
+		</h2>
+		<dl>
+			<dt>
+				이 버전:
+			</dt>
+			<dd>
+				<a class="u-url" href="http://www.w3.org/TR/2016/WD-low-vision-needs-20160317/">http://www.w3.org/TR/2016/WD-low-vision-needs-20160317/</a>
+			</dd>
+			<dt>
+				최신 발행 버전:
+			</dt>
+			<dd>
+				<a href="http://www.w3.org/TR/low-vision-needs/">http://www.w3.org/TR/low-vision-needs/</a>
+			</dd>
+			<dt>
+				최신 편집자의 초안:
+			</dt>
+			<dd>
+				<a href="http://w3c.github.io/low-vision-a11y-tf/requirements.html">http://w3c.github.io/low-vision-a11y-tf/requirements.html</a>
+			</dd>
+			<dt>
+				편집자:
+			</dt>
+			<dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0">
+				<span property="rdf:first" typeof="foaf:Person"><span class="p-name fn" property="foaf:name">Jim Allan</span>, 전맹과 시각 장애를 위한 텍사스 학교</span> <span property="rdf:rest" resource="_:editor1"></span>
+			</dd>
+			<dd class="p-author h-card vcard" resource="_:editor1">
+				<span property="rdf:first" typeof="foaf:Person"><span class="p-name fn" property="foaf:name">Andrew Kirkpatrick</span>, Adobe</span> <span property="rdf:rest" resource="_:editor2"></span>
+			</dd>
+			<dd class="p-author h-card vcard" resource="_:editor2">
+				<span property="rdf:first" typeof="foaf:Person"><span class="p-name fn" property="foaf:name">Shawn Lawton Henry</span>, TAdER Project</span> <span property="rdf:rest" resource="rdf:nil"></span>
+			</dd>
+		</dl>
+		<p class="copyright">
+			<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2016 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents" rel="license">document use</a> rules apply.
+		</p>
+		<hr title="Separator for header">
+	</div>
+	<section class="introductory" id="abstract" property="dc:abstract">
+		<h2 id="h-abstract" resource="#h-abstract">
+			<span property="xhv:role" resource="xhv:heading">개요</span>
+		</h2>
+		<p lang="ko">
+			이 문서, 저시력자에 대한 접근성 요구사항들은 전자 콘텐츠, 도구, 접근할 수 있기 위한 기술들에 대해 저시력자들이 요구하는 것을 설명합니다.
+			이것은 저시력의 개요를 포함하고 특정한 사용자 요구 사항들을 설명합니다.
+			추가적인 정보는 <a href="https://www.w3.org/WAI/users/low-vision/">저시력자에 대한 접근성</a>에서 구할 수 있습니다.
+		</p>
+		<p lang="en">
+			This document, Accessibility Requirements for People with Low Vision, describes what people with low vision need for electronic content, tools, and technologies to be accessible.  It includes an overview of low vision and describes specific user needs. Additional information is available from <a href="https://www.w3.org/WAI/users/low-vision/">Accessibility for People with Low Vision</a>.
+		</p>
+	</section>
+	<section class="introductory" id="sotd">
+		<h2 id="h-sotd" resource="#h-sotd">
+			<span property="xhv:role" resource="xhv:heading">이 문서의 상태</span>
+		</h2>
+		<p lang="ko">
+			<em>
+				이 섹션은 발행 당시 이 문서의 상태를 설명합니다.
+				다른 문서가 이 문서를 대체할 수 있습니다.
+				현재 <abbr title="World Wide Web Consortium">W3C</abbr> 발행물의 목록과 이 기술 보고서의 최신 개정은 http://www.w3.org/TR/에 <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> 기술 보고서 색인</a> 에서 찾을 수 있습니다.
+			</em>
+		</p>
+		<p lang="en">
+			<em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em>
+        </p>
+		<p lang="ko">
+			이것은 <a href="http://www.w3.org/WAI/GL/">웹 콘텐트 접근성 지침 워킹 그룹</a> (WCAG WG)의 태스크 포스인, <a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/">저시력 접근성 태스트 포스</a> (LVTF)에 의한 저시력자에 대한 접근성 요구사항들의 첫 번째 공개 <a href="https://www.w3.org/2015/Process-20150901/#RecsWD">규격 초안</a>입니다.
+			저시력자가 전자 콘텐트, 툴, 접근 할 수 있기 위한 기술들에 대해 무엇을 요구하는지를 설명하고, 격차 분석, 잠재적인 WCAG 2.0 확장, 다른 WCAG 2.0 지원 자료들로의 확장 같은 계획된 향후 작업에 대한 기반을 제공합니다.
+		</p>
+		<p lang="en">
+			This is First Public <a href="https://www.w3.org/2015/Process-20150901/#RecsWD">Working Draft</a> of Accessibility Requirements for People with Low Vision by the&nbsp;<a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/">Low Vision Accessibility Task Force</a> (LVTF), a Task Force of the&nbsp;<a href="http://www.w3.org/WAI/GL/">Web Content Accessibility Guidelines Working Group</a>&nbsp;(WCAG WG). It describes what people with low vision need for electronic content, tools, and technologies to be accessible, and provides a foundation for planned future work such as a gap analysis, potential WCAG 2.0 extension, and enhancements to other WCAG 2.0 support materials.
+		</p>
+		<p lang="ko">
+			이 초안은 전체 프레임워크와 태스크 포스가 이 문서에 대해 계획하고 있는 처리 방법을 제공합니다.
+			태스크 포스가 포함하고자 하는 대부분의 정보는 이 초안에 있습니다; 하지만, 이 초안에 아직 포함되지 않은 몇 가지 <a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/LVTF_Open_Issues">현안들</a>이 있습니다.
+			아직  복사 편집되거나 퇴고되지 않았습니다.
+			태스크 포스는 내용이 마무리 된 이후 공개 검토에 대해 적어도 하나 이상의 규격 초안을 발행하고, 결국 그것을 <a href="https://www.w3.org/2015/Process-20150901/#WGNote">워킹 그룹 노트</a>로 발행할 계획입니다.
+		</p>
+		<p lang="en">
+			This draft provides the overall framework and approach that the Task Force is planning for this document. Most of the information the Task Force intends to include is in this draft; however, there are several <a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/LVTF_Open_Issues">open issues</a> that are not yet included in this draft. It is not yet copy edited or polished. The Task Force plans to publish at least one more Working Draft for public review after the content is finalized, and eventually publish it as a <a href="https://www.w3.org/2015/Process-20150901/#WGNote">Working Group Note</a>.
+		</p>
+		<p lang="ko">
+			태스크 포스는 의견을 환영하고, 특히 다음 피드백을 구합니다:
+		</p>
+		<p lang="en">
+			The Task Force welcomes any comments, and particularly seeks feedback on the following:
+		</p>
+		<ul lang="ko">
+			<li>
+				문서의 목적과 범위는 명확한가?
+			</li>
+			<li>
+				<a href="#overview-of-low-vision">개요 (섹션 2)</a>는 독자들이 전자 콘텐트와 툴들에 관련된 저시력의 기본을 이해하는데 충분한 설명을 제공하는가?
+				그 섹션에 세부 항목 중 일부는 불필요하고 생략할 수 있는가?
+				우리가 추가하기 원할 수 있는 누락된 정보가 있는가(관련된 정보에 초점을 맞춘 섹션을 여전히 유지하면서)?
+			</li>
+			<li>
+				<a href="#h-user-needs">섹션 3에 사용자 요구</a>의 각각에 대해, 주제와 사용가 경험은 알기 쉽게 간결하게 아직 설명되지 않았는가?
+				더 설명이 필요한 점이 있는가?
+			</li>
+			<li>
+				범위 내에서 이 초안에 답변이 되지 않은 질문이 있는가? ("왜 xyz가 저시력자가 읽는 것을 어렵게 만드는가?"가 범위 내에 있을 수 있습니다; 반면 "웹 페이지는 위젯 크기를 조정하는 텍스트를 제공해야 하는가?"는 이 문서에 대해 범위 밖에 있습니다.)
+			</li>
+			<li>
+				이 문서가 미완성의 초안이고 태스크 포스는 아직 포함되지 않은 몇 가지 사용자 요구를 알고 있지만, 우리는 이 문서에 포함하기 위한 추가적인 사용자 요구들에 대한 의견을 환영합니다 - 지금이든 우리가 검토에 대해 초안을 완료한 이후이든.
+			</li>
+		</ul>
+		<ul lang="en">
+			<li>Is the purpose and scope of the document clear?
+			</li>
+			<li>Does the <a href="#overview-of-low-vision">Overview (section 2)</a> provide sufficient explanation for readers to understand the basics of low vision related to electronic content and tools? Is any of the detail in that section unnecessary and can be left out? Is there information missing that we might want to add (while still keeping the section focused on relevant information)?
+			</li>
+			<li>For each of the <a href="#h-user-needs">User Needs in section 3</a>, is the issue and user experience clearly yet succinctly explained? Are there any points that need better explanation?
+			</li>
+			<li>Do you have questions that are not answered in this draft that are within scope? ("Why does xyz make it harder for people with low vision to read?" might be in scope; whereas "Should web pages provide text resizing widgets" is out of scope for this document.)
+			</li>
+			<li>While this is an incomplete draft and the Task Force is aware of some user needs that are not yet included, we welcome comments on additional user needs to include in the document - either now or after we publish the complete draft for review.
+			</li>
+		</ul>
+		<p lang="ko">
+			<strong><a href="http://w3c.github.io/low-vision-a11y-tf/requirements.html">편집자의 초안</a>은 이 초안부터 진행중인 업데이트를 가집니다.</strong>
+			추가적인 정보 : <a href="https://github.com/w3c/low-vision-a11y-tf/commits/gh-pages/requirements.html">변경 이력</a>, <a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/LVTF_Open_Issues">현안들</a>, <a href="https://lists.w3.org/Archives/Public/public-low-vision-comments/">이메일 의견 아카이브</a>.
+		</p>
+		<p lang="en">
+			<strong>The <a href="http://w3c.github.io/low-vision-a11y-tf/requirements.html">Editor's Draft</a> has in-progress updates since this draft.</strong> Additional information: <a href="https://github.com/w3c/low-vision-a11y-tf/commits/gh-pages/requirements.html">history of changes</a>, <a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/LVTF_Open_Issues">open issues</a>, <a href="https://lists.w3.org/Archives/Public/public-low-vision-comments/">e-mail comment archive</a>.
+		</p>
+		<p lang="ko">
+			우리는 <a href="mailto:public-low-vision-comments@w3.org">public-low-vision-comments@w3.org</a>로의 이메일이나 <a href="https://github.com/w3c/low-vision-a11y-tf/issues">GitHub 저장소</a>를 통한 이 초안에 대한 의견을 환영합니다.
+			여러 의견을 함께 결합시키는 것 보다는, 별도의 GitHub 이슈나 각 의견에 대한 pull 요청을 생성해주세요.
+			<strong>2015년 4월 14일</strong>까지 의견을 제출해 주세요.
+		</p>
+		<p lang="en">
+			We welcome comments on this draft via e-mail to&nbsp;<a href="mailto:public-low-vision-comments@w3.org">public-low-vision-comments@w3.org</a>&nbsp;or the <a href="https://github.com/w3c/low-vision-a11y-tf/issues">GitHub repository</a>. Please create separate GitHub issues or pull requests for each comment, rather than combining multiple comments together. Please submit comments by <strong>14 April 2015</strong>.
+		</p>
+		<p lang="ko">
+			첫 번째 공개 규격 초안으로서 발행은 <abbr title="World Wide Web Consortium">W3C</abbr> 멤버십에 의한 보증을 의미하지 않습니다.
+			이것은 초안 문서이고 언제든지 다른 문서에 의해 업데이트, 교체, 폐기될 수 있습니다.
+			진행 중인 작업 외로 이 문서를 인용하는 것은 적절하지 않습니다.
+		</p>
+		<p lang="en">
+			Publication as a First Public Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+		</p>
+		<p lang="ko">
+			이 문서는 <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/" id="sotd_patent" property="w3p:patentRules">2004년 2월 5일 <abbr title="World Wide Web Consortium">W3C</abbr> 특허 정책</a>하에 운영 그룹에 의해 제작되었습니다.
+			그룹은 이 문서가 <abbr title="World Wide Web Consortium">W3C</abbr> 권고안으로 될 것으로 기대하지 않습니다.
+			<abbr title="World Wide Web Consortium">W3C</abbr>는 그룹의 산출물과 관련되어 만들어진 <a href="http://www.w3.org/2004/01/pp-impl/35422/status" rel="disclosure">특허 공개의 공개 목록</a>을 유지합니다; 그 페이지는 또한 특허를 공개하기 위한 설명을 포함합니다.
+			개인이 <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">필수 권리(들)</a>를 포함하는 것으로 여기는 특허에 대한 현행 지식을 가진 개인은 <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure"><abbr title="World Wide Web Consortium">W3C</abbr> 특허 정책의 섹션 6</a>에 합하는 정보를 고지해야 합니다.
+		</p>
+		<p lang="en">
+			This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/" id="sotd_patent" property="w3p:patentRules">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. The group does not expect this document to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/35422/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+		</p>
+		<p lang="ko">
+			이 문서는 <a href="http://www.w3.org/2015/Process-20150901/" id="w3c_process_revision">2015년 9월 1일 <abbr title="World Wide Web Consortium">W3C</abbr> 프로세스 문서</a>에 의해 관리 됩니다.
+		</p>
+		<p lang="en">
+			This document is governed by the <a href="http://www.w3.org/2015/Process-20150901/" id="w3c_process_revision">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+		</p>
+	</section>
+	<nav id="toc">
+		<h2 class="introductory" id="table-of-contents" resource="#table-of-contents">
+			<span property="xhv:role" resource="xhv:heading">콘텐츠 목차</span>
+		</h2>
+		<ul class="toc" role="directory">
+			<li class="tocline">
+				<a class="tocxref" href="#introduction"><span class="secno">1.</span> 소개</a>
+			</li>
+			<li class="tocline">
+				<a class="tocxref" href="#overview-of-low-vision"><span class="secno">2.</span> 저시력 개요</a>
+				<ul class="toc">
+					<li class="tocline">
+						<a class="tocxref" href="#scope-of-low-vision"><span class="secno">2.1</span> 저시력의 범위</a>
+					</li>
+					<li class="tocline">
+						<a class="tocxref" href="#incidence"><span class="secno">2.2</span> 발생률</a>
+					</li>
+					<li class="tocline">
+						<a class="tocxref" href="#cause-and-progression-of-low-vision"><span class="secno">2.3</span> 저시력의 원인과 진행</a>
+					</li>
+					<li class="tocline">
+						<a class="tocxref" href="#visual-impairments"><span class="secno">2.4</span> 시각 장애</a>
+						<ul class="toc">
+							<li class="tocline">
+								<a class="tocxref" href="#visacu"><span class="secno">2.4.1</span> 시력 (선명도)</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#light-sensitivity"><span class="secno">2.4.2</span> 빛 민감도</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#contrast-sensitivity"><span class="secno">2.4.3</span> 명암 민감도</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#visfie"><span class="secno">2.4.4</span> 시야</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#color-vision"><span class="secno">2.4.5</span> 색각</a>
+							</li>
+						</ul>
+					</li>
+					<li class="tocline">
+						<a class="tocxref" href="#functional-vision"><span class="secno">2.5</span> 기능적 시각</a>
+					</li>
+				</ul>
+			</li>
+			<li class="tocline">
+				<a class="tocxref" href="#user-needs"><span class="secno">3.</span> 사용자 요구</a>
+				<ul class="toc">
+					<li class="tocline">
+						<a class="tocxref" href="#brightness-and-color"><span class="secno">3.1</span> 밝기와 색상</a>
+						<ul class="toc">
+							<li class="tocline">
+								<a class="tocxref" href="#brightness-overall"><span class="secno">3.1.1</span> 전체 밝기</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#text-contrast"><span class="secno">3.1.2</span> 텍스트 명암</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#not-relying-on-color"><span class="secno">3.1.3</span> 색상에 의존하지 않는 것</a>
+							</li>
+						</ul>
+					</li>
+					<li class="tocline">
+						<a class="tocxref" href="#tracking"><span class="secno">3.2</span> 추적</a>
+						<ul class="toc">
+							<li class="tocline">
+								<a class="tocxref" href="#rewrap-for-one-direction-scrolling"><span class="secno">3.2.1</span> 한 방향 스크롤링을 위한 재포장</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#reflow-to-single-column"><span class="secno">3.2.2</span> 단일 컬럼으로의 리플로우</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#line-length"><span class="secno">3.2.3</span> 줄 길이</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#hyphenation"><span class="secno">3.2.4</span> 하이픈</a>
+							</li>
+						</ul>
+					</li>
+					<li class="tocline">
+						<a class="tocxref" href="#perceiving"><span class="secno">3.3</span> 인식</a>
+						<ul class="toc">
+							<li class="tocline">
+								<a class="tocxref" href="#text-size"><span class="secno">3.3.1</span> 텍스트 크기</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#font"><span class="secno">3.3.2</span> 폰트</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#style"><span class="secno">3.3.3</span> 스타일</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#capitalization"><span class="secno">3.3.4</span> 대문자 사용</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#size-of-all-elements"><span class="secno">3.3.5</span> 모든 요소의 크기</a>
+							</li>
+						</ul>
+					</li>
+					<li class="tocline">
+						<a class="tocxref" href="#spacing"><span class="secno">3.4</span> 읽기를 위한 간격</a>
+						<ul class="toc">
+							<li class="tocline">
+								<a class="tocxref" href="#leading"><span class="secno">3.4.1</span> 줄 간격</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#letter-spacing"><span class="secno">3.4.2</span> 자간</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#word-spacing"><span class="secno">3.4.3</span> 띄어쓰기 간격</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#justification"><span class="secno">3.4.4</span> 자리맞춤</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#margins-and-borders"><span class="secno">3.4.5</span> 여백과 테두리</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#spacing-between-elements"><span class="secno">3.4.6</span> 요소 사이 간격</a>
+							</li>
+						</ul>
+					</li>
+					<li class="tocline">
+						<a class="tocxref" href="#identifying-elements"><span class="secno">3.5</span> 요소 식별</a>
+						<ul class="toc">
+							<li class="tocline">
+								<a class="tocxref" href="#element-level-customization"><span class="secno">3.5.1</span> 요소 수준 맞춤화</a>
+							</li>
+						</ul>
+					</li>
+					<li class="tocline">
+						<a class="tocxref" href="#point-of-regard-and-proximity"><span class="secno">3.6</span> 응시점과 근접</a>
+						<ul class="toc">
+							<li class="tocline">
+								<a class="tocxref" href="#maintain-point-of-regard"><span class="secno">3.6.1</span> 응시점 유지</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#proximity-of-related-information"><span class="secno">3.6.2</span> 관련 정보의 근접</a>
+							</li>
+						</ul>
+					</li>
+					<li class="tocline">
+						<a class="tocxref" href="#work-with-user-settings"><span class="secno">3.7</span> 사용자 설정에 의한 작업</a>
+						<ul class="toc">
+							<li class="tocline">
+								<a class="tocxref" href="#seeing-all-interface-elements"><span class="secno">3.7.1</span> 모든 인터페이스 요소들 보기</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#printing-customized-text"><span class="secno">3.7.2</span> 맞춤형 텍스트 인쇄</a>
+							</li>
+							<li class="tocline">
+								<a class="tocxref" href="#using-user-settings"><span class="secno">3.7.3</span> 사용자 설정 사용</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li class="tocline">
+				<a class="tocxref" href="#acknowledgments"><span class="secno">A.</span> 감사의 말</a>
+			</li>
+			<li class="tocline">
+				<a class="tocxref" href="#references"><span class="secno">B.</span> 참조</a>
+				<ul class="toc">
+					<li class="tocline">
+						<a class="tocxref" href="#informative-references"><span class="secno">B.1</span> 유용한 참조</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<section id="introduction" property="bibo:hasPart" resource="#introduction" typeof="bibo:Chapter">
+		<!--OddPage-->
+		<h2 id="h-introduction" resource="#h-introduction">
+			<span property="xhv:role" resource="xhv:heading"><span class="secno">1.</span> 소개</span>
+		</h2>
+		<div class="issue" id="issue-1">
+			<div aria-level="3" class="issue-title marker" id="h-issue1" role="heading">
+				<span lang="ko">이슈 1</span>
+				<span lang="en">Issue 1</span>
+			</div>
+			<div class="">
+				<p lang="ko">
+					<strong>이 초안에 대해:</strong> 아직 이 초안에 포함되지 않은 몇 가지 <a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/LVTF_Open_Issues">현안들</a>이 있습니다.
+					일부 이미지와 이미지 설명은 교정될 것입니다.
+					이 초안은 아직 복사 편집되거나 퇴고되지 않았습니다.
+				</p>
+				<p lang="en">
+					<strong>About this Draft:</strong> There are several <a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/LVTF_Open_Issues">open issues</a> that are not yet included in this draft. Some images and image descriptions will be revised. This draft is not yet copy edited or polished.
+				</p>
+			</div>
+		</div>
+		<p lang="ko">
+			이 문서, 저시력자에 대한 접근성 요구사항들은 전자 콘텐츠, 도구, 접근할 수 있기 위한 기술들에 대해 저시력자들이 요구하는 것을 설명합니다.
+			이것은 저시력의 개요를 포함하고 특정한 사용자 요구 사항들을 설명합니다.
+			이 이슈에 우선 순위를 설정하지 않습니다.
+		</p>
+		<p lang="en">
+			This document, Accessibility Requirements for People with Low Vision, describes what people with low vision need for electronic content, tools, and technologies to be accessible. It includes an overview of low vision and describes specific user needs. It does not set priorities on issues.
+		</p>
+		<p lang="ko">
+			사용자 요구는 하드웨어, 운영체제, 유저 에이전트(웹 브라우저 같은), 확장 프로그램, 플러그인, 보조 기술, 콘텐트를 포함하는 몇 가지 수준에 충족될 수 있습니다.
+			이 문서는 사용자 요구를 충족하기 위한 책임을 명시하지 않고, 기술적 요구사항을 설정하지 않습니다.
+		</p>
+		<p lang="en">
+			User needs can be met at several levels, including hardware, operating systems, user agents (such as web browsers), extensions, plug-ins, assistive technologies, and content. This document does not specify responsibility for meeting user needs, and it does not set technical requirements.
+		</p>
+		<p lang="ko">
+			이 문서는 웹 콘텐트, 툴, 저 시력자에게 접근 가능하게 하는 기술들을 개발하기 위한 배경을 제공하기 위해 의도되었습니다.
+		</p>
+		<p lang="en">
+			This document is intended to provide the background for developing guidance on making web content, tools, and technologies accessible to people with low vision.
+		</p>
+		<p lang="ko">
+			추가 정보 :
+		</p>
+		<p lang="en">
+			Additional information:
+		</p>
+		<ul lang="ko">
+			<li>
+
+				<a href="https://www.w3.org/WAI/users/low-vision/">저시력자를 위한 접근성</a>은 시각적 조건에 대한 자세한 내용과 웹 사용에 그것들의 영향과 관련되고, 향후에 대해 계획된 연관된 <abbr title="World Wide Web Consortium">W3C</abbr> 작업들과 관련됩니다.
+			</li>
+			<li>
+				<a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/References">참고</a>는 이 문서 내 정보들에 대한 소스들을 제공합니다.<!-- @@ we might move this from a wiki page to a WAI web page later -->
+			</li>
+		</ul>
+		<ul lang="en">
+			<li>
+				<a href="https://www.w3.org/WAI/users/low-vision/">Accessibility for People with Low Vision</a> links to details on visual conditions and their impact on web use, and links to related <abbr title="World Wide Web Consortium">W3C</abbr> work that is planned for the future
+			</li>
+			<li>
+				<a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/References">References</a> provides sources for the information in this document <!-- @@ we might move this from a wiki page to a WAI web page later -->
+			</li>
+		</ul>
+	</section>
+	<section id="overview-of-low-vision" property="bibo:hasPart" resource="#overview-of-low-vision" typeof="bibo:Chapter">
+		<!--OddPage-->
+		<h2 id="h-overview-of-low-vision" resource="#h-overview-of-low-vision">
+			<span property="xhv:role" resource="xhv:heading"><span class="secno">2.</span> 저시력 개요</span>
+		</h2>
+		<section id="scope-of-low-vision" property="bibo:hasPart" resource="#scope-of-low-vision" typeof="bibo:Chapter">
+			<h3 id="h-scope-of-low-vision" resource="#h-scope-of-low-vision">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">2.1</span> 저시력의 범위</span>
+			</h3>
+			<p lang="ko">
+				“저시력”은 실명 외 시각 장애를 나타냅니다.
+				“약시”와 “시력 장애”와 같은 다른 용어들은 다른 상황에서 사용됩니다.
+				시계 보건 기구(WHO)와 같은 일부 정부와 기구들은 시력과 시야의 특정 수준에 따라 저시력의 범주를 정의합니다.
+				<a href="#visfie">시야</a>는 사람이 그들의 눈을 한 위치에 고정할 때 볼 수 있는 영역입니다.
+			</p>
+			<p lang="en">
+				“Low vision” refers to visual impairments other than blindness. Other terms, such as “partially sighted” and “sight impaired”, are used in different contexts. Some governments and organizations such as the World Health Organization (WHO) define categories of low vision based on specific levels of visual acuity and field of vision. <a href="#visacu">Visual acuity</a> is the clarity or sharpness of vision. <a href="#visfie">Field of vision</a> is the area a person can see when their eyes are fixed in one position.
+			</p>
+			<p lang="ko">
+				많은 상황에서, 저시력은 단지 일반 안경, 콘택트 렌즈, 의학, 수술로 교정되지 않는 장애들을 포함합니다.
+				예를 들어, 보는 사람에 가까운 개체에 초점을 맞추는 것이 불가능하지만 독서용 안경으로 극복 가능한 것은 일부 장애인의 권리 맥락에서 저시력으로 간주되지 않습니다.
+				이러한 맥락에서, 저시력은 종종 사람의 일상 활동 수행 능력에 지장을 주는 시각 장애로 정의됩니다.
+			</p>
+			<p lang="en">
+				In many contexts, low vision only includes impairments that are not corrected with regular glasses, contact lenses, medicine, or surgery. For example, an inability to focus on objects close to the viewer but that can be overcome with reading glasses is not considered low vision in some disability rights contexts. In these contexts, low vision is often defined as visual impairment that interferes with a person’s ability to perform everyday activities.
+			</p>
+			<p lang="ko">
+				사회적 프로그램 혜택들 같은 일부 상황에서, 사람들은 저시력을 가지거나 “법정 시각 장애인”으로 분류됩니다.
+				법정 시각 장애인인 많은 사람들은 몇 가지 사용 가능한 시력을 가지고, 그들을 위해 최적으로 보여질 때 일부 텍스트를 읽을 수 있습니다.
+			</p>
+			<p lang="en">
+				In some contexts, such as social program benefits, people are classified as having low vision or being “legally blind”. Many people who are legally blind have some usable vision, and can read some text when it is displayed optimally for them.
+			</p>
+			<p lang="ko">
+				사용자 요구를 고려하는 것에서, 이 문서는
+				현저한 실명을 제외한 모든 시각 장애 — 노화로부터의 장애, “색맹”, 아직 어떤 환경에서 사용자 인터페이스를 보기 위한 충분한 시력을 가지는 종종 법정 시각 장애인으로 분류되는 장애를 포함하기 위해 저시력의 넓은 범위를 사용합니다.
+				이 문서는 완전히 맹인인 사람들에 대해 관련된 모든 이슈를 포함하지 않습니다.
+				인지 장애를 가진 사람들의 요구와 겹치는 몇 가지 이슈들을 포함하지 않습니다.
+			</p>
+			<p lang="en">
+				In considering user needs, this document uses a broad scope of low vision to include all visual impairments except significant blindness — including impairments from aging, “color blindness”, and impairments that are often categorized as legally blind yet people have sufficient vision to see user interfaces in some situations. <!-- @@ edit &/or lvtf review-->This document does not include all issues that are also relevant for people who are totally blind. It does include several issues that overlap with the needs of some people with cognitive disabilities.
+			</p>
+		</section>
+		<section id="incidence" property="bibo:hasPart" resource="#incidence" typeof="bibo:Chapter">
+			<h3 id="h-incidence" resource="#h-incidence">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">2.2</span> 발생률</span>
+			</h3>
+			<p lang="ko">
+				<a href="http://www.who.int/mediacentre/factsheets/fs282/en/">시각 장애와 실명에 대한 자료표</a> [<cite><a class="bibref" href="#bib-WHO-VI">WHO-VI</a></cite>]에서 세계 보건 기구(WHO)는 시각 장애인의 86%가 저시력을 가짐을 나타내어, 저시력을 가지는 전세계 2억4천6백만명이 있고 39만명이 맹인 임을 추정합니다.
+			</p>
+			<p lang="en">
+				In a <a href="http://www.who.int/mediacentre/factsheets/fs282/en/">fact sheet on visual impairment and blindness</a> [<cite><a class="bibref" href="#bib-WHO-VI">WHO-VI</a></cite>] the World Health Organization (WHO) estimates that there are 246 million people worldwide who have low vision and 39 million people are blind, indicating that 86% of the people with visual impairments have low vision.
+			</p>
+		</section>
+		<section id="cause-and-progression-of-low-vision" property="bibo:hasPart" resource="#cause-and-progression-of-low-vision" typeof="bibo:Chapter">
+			<h3 id="h-cause-and-progression-of-low-vision" resource="#h-cause-and-progression-of-low-vision">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">2.3</span> 저시력의 원인과 진행</span>
+			</h3>
+			<p lang="ko">
+				대부분의 저시력은 안구 질환들과 백내장, 녹내장, 당뇨같은 건강 상태에 기인합니다.
+				이것들은 노인에서 더 유행입니다.
+				일부 저시력은 선천적 질환이나 부상입니다.
+			</p>
+			<p lang="en">
+				Most low vision is caused by eye diseases and health conditions such as cataracts, glaucoma, and diabetes. These are more prevalent in older people. Some low vision is from birth defects or injuries.<!-- Information on specific causes of low vision is linked from <a href="https://www.w3.org/WAI/users/low-vision/">Accessibility for People with Low Vision</a>. -->
+			</p>
+			<p lang="ko">
+				저시력은 사람들에 걸쳐 이슈의 넓고 다양한 범위를 포함하고, 심지어 한 개인이 여러 별도의 이슈들을 경험할 수 있습니다.
+				많은 안구 질환들은 점진적으로 시력 악화를 유발하고, 개인의 시력이 좋은 시력에서 몇 년에 걸쳐 실명으로 악화되는 것은 희귀하지 않은 것입니다.
+				저시력의 일부 원인은 수술이나 약물을 통해 개선될 수 있고, 누군가에게 수 개월에 걸쳐 악화 되어 가는 시력을 가지는 것은 희귀하지 않은 일이며, 그 후에 치료 이후 개선된 시력을 경험하게 됩니다.
+			</p>
+			<p lang="en">
+				Low vision encompasses a wide and variable range of issues across people, and even a single individual may experience multiple separate issues. Many eye diseases cause progressively worsening vision, and it is not uncommon for a person’s vision to deteriorate from good vision to blindness over several years. Some causes of low vision can be improved through surgery or medication, and it is not uncommon for someone to have deteriorating vision over several months, and then experience improved vision after treatment.
+			</p>
+			<p lang="ko">
+				40세 주위를 시작으로, 대다수 사람들은 질환으로 기인하지 않은, 가까운 텍스트에 초점을 맞추는 능력이 감소하는 것과, 색상 인식의 감소, 명암 민감도의 감소 등등을 포함하여, 쇠퇴하는 시력을 가집니다.
+				이 중 일부는 안경이나 더 많은 조명으로 “교정 가능”하고, 어떤 것은 그렇지 않습니다.
+				노화로 인해 저하된 시력을 가진 많은 사람들은 장애를 가지는 것으로 자신을 고려하지 않습니다.
+			</p>
+			<p lang="en">
+				Starting around age 40, most people have declining vision that is not caused by disease, including decreasing ability to focus on text that is close, decreasing color perception, decreasing contrast sensitivity, and more. Some of this is “correctable” with glasses or more lighting, and some is not. Many people with decreased vision due to aging do not consider themselves as having a disability.
+			</p>
+		</section>
+		<section id="visual-impairments" property="bibo:hasPart" resource="#visual-impairments" typeof="bibo:Chapter">
+			<h3 id="h-visual-impairments" resource="#h-visual-impairments">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">2.4</span> 시각 장애</span>
+			</h3>
+			<p lang="ko">
+				이 섹션은 웹 사용에 영향을 주는 시각 장애의 다섯 카테고리에 대해 간단히 소개하고, 전적인 실명을 포함하지 않습니다:
+			</p>
+			<p lang="en">
+				This section briefly introduces five categories of visual impairment that impact web use<!-- @@ should we make this more generic than "web" ? -->, not including total blindness:
+			</p>
+			<ul lang="ko">
+				<li>
+					시력 (선명도)
+				</li>
+				<li>
+					빛 민감도
+				</li>
+				<li>
+					명암 민감도
+				</li>
+				<li>
+					시야
+				</li>
+				<li>
+					색각
+				</li>
+			</ul>
+			<ul lang="en">
+				<li>Visual acuity (clarity)
+				</li>
+				<li>Light sensitivity
+				</li>
+				<li>Contrast sensitivity
+				</li>
+				<li>Field of vision
+				</li>
+				<li>Color vision
+				</li>
+			</ul>
+			<section id="visacu" property="bibo:hasPart" resource="#visacu" typeof="bibo:Chapter">
+				<h4 id="h-visacu" resource="#h-visacu">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">2.4.1</span> 시력 (선명도)</span>
+				</h4>
+				<p lang="ko">
+					시력은 시각의 선명도나 명확성입니다.
+					일반적으로 눈의 망막 부분의 기능과 뇌의 해석의 기능에 의존됩니다.
+					거리 시력의 측정은 20/20(미터법으로 6/6)의 표준을 기반으로 합니다.
+				</p>
+				<p lang="en">
+					Visual acuity is the clarity or sharpness of vision. It is generally dependent on the functioning of the retina part of the eye and of the interpretation of the brain. Measurement of distance visual acuity is based on a standard of 20/20 (6/6 in metric).
+				</p>
+				<p lang="ko">
+					일부 저시력은 안경, 콘택트 렌즈, 수술로 교정될 수 있고 - 일부는 그렇지 않습니다.
+					따라서, 어떤 사람은 무엇이든 흐릿한 시각(저시력)을 가질 것입니다.
+				</p>
+				<p lang="en">
+					Some low visual acuity can be corrected with glasses, contact lenses, or surgery – and some cannot. Therefore, some people will have blurry vision (low visual acuity) no matter what.
+				</p>
+				<p lang="ko">
+					시력 (선명도)에 관련된 사용자 요구는 다음 섹션들에서 다루어집니다:
+				</p>
+				<p lang="en">
+					User needs related to visual acuity (clarity) are addressed in the following sections:
+				</p>
+				<ul lang="ko">
+					<li>
+						<a href="#perceiving">3.3 인식</a> - 텍스트 크기, 폰트, 스타일, 대문자 사용, 모든 요소의 크기
+					</li>
+					<li>
+						<a href="#spacing">3.4 읽기를 위한 간격</a> - 줄 간격, 자간, 띄어쓰기 간격, 자리맞춤, 여백과 테두리, 요소 사이 간격
+					</li>
+					<li>
+						<a href="#identifying-elements">3.5 요소 식별</a> - 텍스트 증가에 비례하는 요소 수준 맞춤화
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>
+						<a href="#perceiving">3.3 Perceiving</a>&nbsp;- text size, font, style, capitalization, size of all elements
+					</li>
+					<li>
+						<a href="#spacing">3.4 Spacing for Reading</a>&nbsp;- leading, letter spacing, word spacing, justification, margins and borders, spacing between elements
+					</li>
+					<li>
+						<a href="#identifying-elements">3.5 Identifying Elements</a>&nbsp;- element-level customization, proportional text increase
+					</li>
+				</ul>
+			</section>
+			<section id="light-sensitivity" property="bibo:hasPart" resource="#light-sensitivity" typeof="bibo:Chapter">
+				<h4 id="h-light-sensitivity" resource="#h-light-sensitivity">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">2.4.2</span> 빛 민감도</span>
+				</h4>
+				<p lang="ko">
+					저시력을 가진 많은 사람들은 (광선기피증이라는 이름의)빛에 대한 극단적인 민감도를 가집니다.
+					밝은 빛은 보는 것을 어렵거나 불가능하게 만들고, 안구 통증과 두통을 유발합니다.
+					어떤 사람들의 경우 밝은 배경색을 가진 컴퓨터 스크린의 보통 밝기는 읽을 수 없고 고통스럽습니다.
+					그들은 배경을 어두운 색으로 변경해야 합니다.
+				</p>
+				<p lang="en">
+					Many people with low vision have extreme sensitivity to light (called photophobia). Bright light makes it difficult or impossible to see, and causes eye pain and headaches. For some people, the normal brightness of a computer screen with a light background is not readable and painful. They need to change the background to a darker color.
+				</p>
+				<p lang="ko">
+					빛 민감도에 관련된 사용자 요구는 다음 섹션에서 다루어집니다:
+				</p>
+				<p lang="en">
+					User needs related to light sensitivity are addressed in the following section:
+				</p>
+				<ul lang="ko">
+					<li>
+						<a href="#brightness-and-color">3.1 밝기와 색상</a>
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>
+						<a href="#brightness-and-color">3.1 Brightness and Color</a>
+					</li>
+				</ul>
+			</section>
+			<section id="contrast-sensitivity" property="bibo:hasPart" resource="#contrast-sensitivity" typeof="bibo:Chapter">
+				<h4 id="h-contrast-sensitivity" resource="#h-contrast-sensitivity">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">2.4.3</span> 명암 민감도</span>
+				</h4>
+				<p lang="ko">
+					명암 민감도는 이미지의 밝고 어두움을 구별할 수 있는 능력, 예를 들어 배경에서 텍스트를 식별하는 것,입니다.
+					낮은 명암 민감도를 가진 사람에 대한 일반적인 접근 장벽은 밝은 배경 위의 회색 텍스트 입니다.
+				</p>
+				<p lang="en">
+					Contrast sensitivity is the ability to distinguish bright and dim areas of images, for example, to discern text on a background. A common accessibility barrier for people with low contrast sensitivity is gray text on a light background.
+				</p>
+				<p lang="ko">
+					명암은 밝기에 기반합니다.
+					매우 다르게 보이는 색상(예를 들어, 빨강, 파랑, 초록)은 유사한 밝기를 가지고, 충분한 명암을 제공하지 않습니다. <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast7.html#visual-audio-contrast7-resources-head">도구</a>는 색상 간 명암비를 결정할 수 있습니다.
+				</p>
+				<p lang="en">
+					Contrast is based on brightness. Colors that look very different (for example, red, blue, green) can have similar brightness, and not provide sufficient contrast.&nbsp;<a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast7.html#visual-audio-contrast7-resources-head">Tools</a>&nbsp;are available to determine the contrast ratio between colors.
+				</p>
+				<p lang="ko">
+					명암 민감도에 관련된 사용자 요구는 다음 섹션에서 다루어 집니다:
+				</p>
+				<p lang="en">
+					User needs related to contrast sensitivity are addressed in the following section:
+				</p>
+				<ul lang="ko">
+					<li>
+						<a href="#brightness-and-color">3.1 밝기와 색상</a>
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>
+						<a href="#brightness-and-color">3.1 Brightness and Color</a>
+					</li>
+				</ul>
+			</section>
+			<section id="visfie" property="bibo:hasPart" resource="#visfie" typeof="bibo:Chapter">
+				<h4 id="h-visfie" resource="#h-visfie">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">2.4.4</span> 시야</span>
+				</h4>
+				<p lang="ko">
+					똑바로 앞을 볼 때 사람의 눈이 시각 정보를 수집할 수 있는 것으로부터의 영역은 가시 범위나 시야로 나타납니다.
+					일반적으로 사람은 중앙 5도 내에서 선명한 시각과 중앙 20도 내에서 선명한 색상과 함께, 거의 왼쪽으로부터 오른쪽으로 180도와 위와 아래로 150도의 시야를 가집니다.
+					어떤 사람은 영역 손실이라 불리는, 좁은 시야를 가집니다.
+				</p>
+				<p lang="en">
+					The area from which a person’s eye is able to gather visual information when looking straight ahead is referred to as the field of vision or visual field.&nbsp;People generally have a field of vision of approximately 180 degrees from left to right and 150 degrees up and down, with the sharpest vision in the central 5 degrees and color vision in the central 20 degrees. Some people have a smaller field of vision, which is called field loss.<!-- Examples of conditions that cause visual field loss are linked from <a href="https://www.w3.org/WAI/users/low-vision/">Accessibility for People with Low Vision</a>. -->
+				</p>
+				<p lang="ko">
+					시야 손실의 유형은 다음과 같이 그룹핑될 수 있습니다:
+				</p>
+				<p lang="en">
+					Types of visual field loss can be grouped as follows:
+				</p>
+				<ul lang="ko">
+					<li>
+						중앙 필드 손실 : 사람의 시력의 중앙에서 시력이 감소되거나 없습니다.
+					</li>
+					<li>
+						주변 필드 손실 : 사람들은 오직 그들의 시야의 중앙 부분 내만 보이며, 때때로 “터널 비전”이라고 불립니다.
+					</li>
+					<li>
+						다른 필드 손실 : 사람들은 불투명한 시각의 산발적인 조각을 가지거나, 필드 손실 고리를 가지거나, 그들 시력의 왼쪽이나 오른쪽에서 필드 손실을 가지거나, 다른 필드 손실을 가집니다.
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>Central field loss: Vision is reduced or absent in the middle of people’s vision.
+					</li>
+					<li>Peripheral field loss: People only see in the central portion of their visual field, sometimes called “tunnel vision”.
+					</li>
+					<li>Other field loss: People have scattered patches of obscured vision, have a ring of field loss, have field loss in the left or right part of their vision, or other field loss.
+					</li>
+				</ul>
+				<p lang="ko">
+					시야 손실의 가상 예 :
+				</p>
+				<p lang="en">
+					Simulated examples of visual field loss:
+				</p>
+				<figure id="fig-example-of-central-field-loss">
+					<img alt="web page with center area obscured" height="219" src="images/cfl.png" width="315">
+					<figcaption lang="ko">
+						Fig. <span class="figno">1</span> <span class="fig-title">중앙 필드 손실의 예</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">1</span> <span class="fig-title">Example of central field loss</span>
+					</figcaption>
+				</figure>
+				<figure id="fig-example-of-peripheral-field-loss">
+					<img alt="web page with outer area obscured" height="219" src="images/pfl.png" width="315">
+					<figcaption lang="ko">
+						Fig. <span class="figno">2</span> <span class="fig-title">주변 필드 손실의 예</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">2</span> <span class="fig-title">Example of peripheral field loss</span>
+					</figcaption>
+				</figure>
+				<figure id="fig-example-of-other-field-loss">
+					<img alt="web page with scattered areas obscured" height="219" src="images/ofl.png" width="315">  
+					<figcaption lang="ko">
+						Fig. <span class="figno">3</span> <span class="fig-title">다른 필드 손실의 예</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">3</span> <span class="fig-title">Example of other field loss</span>
+					</figcaption>
+				</figure>
+				<p lang="ko">
+					시야에 관련된 사용자 요구는 다음 섹션들에서 다루어 집니다:
+				</p>
+				<p lang="en">
+					User needs related to field of vision are addressed in the following sections:
+				</p>
+				<ul lang="ko">
+					<li>
+						<a href="#tracking">2.2 추적</a> - 한 방향 스크롤링을 위한 재포장, 단일 컬럼으로의 리플로우, 유연한 텍스트 영역, 줄 길이, 자리맞춤, 하이픈 연결
+					</li>
+					<li>
+						<a href="#point-of-regard-and-proximity">2.6 응시점과 근접</a> - 응시점 유지, 관련 정보의 근접, 스크롤바
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>
+						<a href="#tracking">2.2 Tracking</a>&nbsp;- rewrap for one direction scrolling, reflow to single column, flexible text areas, line length, justification, hyphenation
+					</li>
+					<li>
+						<a href="#point-of-regard-and-proximity">2.6 Point of Regard and Proximity</a>&nbsp;- maintain point to regard, proximity of related information, scrollbars
+					</li>
+				</ul>
+			</section>
+			<section id="color-vision" property="bibo:hasPart" resource="#color-vision" typeof="bibo:Chapter">
+				<h4 id="h-color-vision" resource="#h-color-vision">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">2.4.5</span> 색각</span>
+				</h4>
+				<p lang="ko">
+					어떤 사람들은 보통 색상 인지에 대해 책임지고 있는 눈의 콘 수용체에서 결손의 이유로 분명한 색상을 잘 혹은 전혀 볼 수 없습니다.
+					색맹인 대부분 사람들이 대부분의 색상들을 볼 수 있을지라도, 이것이 보통 “색맹”이라 불립니다.
+					어떤 색을 전혀 볼 수 없는 사람은 드뭅니다.
+					세계적으로, 거의 12명 중 1명의 남자(8%)와 200명 중 1명의 여자가 색상 시력 결손을 가집니다. [<em>초안 메모:</em> 추가되어야 할 참조; 일부는 <a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/References#Color_Vision">참조</a>에 언급됩니다.]
+					색상 시력 결손은 많은 상황에서 “저시력”이나 장애로 분류되지 않습니다.<!--  Additional information is linked from <a href="https://www.w3.org/WAI/users/low-vision/">Accessibility for People with Low Vision</a>. -->
+				</p>
+				<p lang="en">
+					Some people cannot see certain colors well or at all, usually because of deficiencies in the cone receptors of their eyes which are responsible for color perception. This is commonly called “color blindness”, even though most people who are color blind can see most colors. It is rare that a person cannot see any color at all. Globally, approximately 1 in 12 men (8%) and 1 in 200 women have color vision deficiencies. [<em>Draft Note:</em> Reference to be added; some listed in <a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/References#Color_Vision">References</a>.]&nbsp;Color vision deficiencies are not classified as “low vision” or disabilities in many contexts.<!--  Additional information is linked from <a href="https://www.w3.org/WAI/users/low-vision/">Accessibility for People with Low Vision</a>. -->
+				</p>
+				<p lang="ko">
+					색맹의 가상 예:
+				</p>
+				<p lang="en">
+					Simulated examples of color blindness:
+				</p>
+				<figure id="fig-full-color-perception">
+					<img alt="Color wheel with 12 different colors" height="190" src="images/full_color.png" width="190">
+					<figcaption lang="ko">
+						Fig. <span class="figno">4</span> <span class="fig-title">전체 색상 인식</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">4</span> <span class="fig-title">Full color perception</span>
+					</figcaption>
+				</figure>
+				<figure id="fig-red-green-color-blindness">
+					<img alt="Color wheel with shades of blue and yellow" height="190" src="images/protanopia.png" width="190">
+					<figcaption lang="ko">
+						Fig. <span class="figno">5</span> <span class="fig-title">적록 색맹</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">5</span> <span class="fig-title">Red-green color blindness</span>
+					</figcaption>
+				</figure>
+				<!-- @@
+					<figure><img alt="Color wheel with shades of blue and yellow" width="190" height="190" src="images/deuteranopia.png"><figcaption>Green-red color blindness</figcaption></figure>
+				-->					<figure id="fig-blue-yellow-color-blindness">
+					<img alt="Color wheel with shades of green and red" height="190" src="images/tritanopia.png" width="190">
+					<figcaption lang="ko">
+						Fig. <span class="figno">6</span> <span class="fig-title">황청 색맹</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">6</span> <span class="fig-title">Blue-yellow color blindness</span>
+					</figcaption>
+				</figure>
+				<figure id="fig-no-color-perception-rare">
+					<img alt="Color wheel with shades of gray" height="190" src="images/achromatopsia.png" width="190">
+					<figcaption lang="ko">
+						Fig. <span class="figno">7</span> <span class="fig-title">전색맹 (희귀)</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">7</span> <span class="fig-title">No color perception (rare)</span>
+					</figcaption>
+				</figure>
+				<p lang="ko">
+					색맹에 관련된 사용자 요구는 다음 섹션에서 다루어집니다:
+				</p>
+				<p lang="en">
+					User needs related to color blindness are addressed in the following section:
+				</p>
+				<ul lang="ko">
+					<li>
+						<a href="#brightness-and-color">2.1 밝기와 색상</a>
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>
+						<a href="#brightness-and-color">2.1 Brightness and Color</a>
+					</li>
+				</ul>
+			</section>
+		</section>
+		<section id="functional-vision" property="bibo:hasPart" resource="#functional-vision" typeof="bibo:Chapter">
+			<h3 id="h-functional-vision" resource="#h-functional-vision">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">2.5</span> 기능적 시각</span>
+			</h3>
+			<div class="issue" id="issue-2">
+				<div aria-level="4" class="issue-title marker" id="h-issue2" role="heading">
+					<span>이슈 2</span>
+				</div>
+				<div class="">
+					<p lang="ko">
+						태스크 포스는 이 섹션을 확장할 계획입니다.
+					</p>
+					<p lang="en">
+						The Task Force plans to expand this section.
+					</p>
+				</div>
+			</div>
+			<p lang="ko">
+				저시력 대부분 사람은 여러 시각 장애를 가집니다.
+				예를 들어, 황반변성을 가진 사람은 일반적으로 중앙 필드 손실(“사각 지대”), 약한 시력, 낮은 명암 민감도, 높은 빛 민감도로 발전됩니다. 
+				다른 요인들은 — 염증, 약물, 피로, 환경, 작업 같은 — 주어진 상황에서 사람의 실질적인 시력에 영향을 줍니다.
+			</p>
+			<p lang="en">
+				Most people with low vision have multiple visual impairments. For example, people with macular degeneration usually develop central field loss (“blind spots”), poor visual acuity, low contrast sensitivity, and high light sensitivity. Other factors — such as inflammation, medication, fatigue, environment, and task — influence a person’s effective vision in a given situation.
+			</p>
+			<p lang="ko">
+				피로는 저시력을 가진 많은 사람들에 대해, 특히 그들의 시각 상황에 대해 최적의 방법으로 보여지지 않은 텍스트를 읽을 때 중요한 이슈입니다.
+				일반적으로, 더 많은 사람들이 읽기 위해 안간힘을 써야하고, 최악의 시각 피로도가 될 것입니다.
+				어떤 사람들은 짧은 시간 동안만 읽을 수 있고 그 후 휴식이 필요합니다.
+			</p>
+			<p lang="en">
+				Fatigue is a significant issue for many people with low vision, particularly when they read text that is not displayed in an optimum way for their visual situation. Generally, the more a person needs to strain to read, the worse their visual fatigue will become. Some people can read for only a short time and then they need a break.
+			</p>
+			<p lang="ko">
+				환경적 요인들은 포함합니다:
+			</p>
+			<p lang="en">
+				Environmental factors include:
+			</p>
+			<ul lang="ko">
+				<li>
+					기기의 선명도, 예를 들어, 인치당 도트 수(dpi)
+				</li>
+				<li>
+					기기의 밝기
+				</li>
+				<li>
+					조명
+				</li>
+				<li>
+					눈부심
+				</li>
+				<li>
+					거리와 각도
+				</li>
+				<li>
+					이동, 예를 들어, 기차에서 독서
+				</li>
+			</ul>
+			<ul lang="en">
+				<li>Clarity of the device, for example, dots-per-inch (dpi)
+				</li>
+				<li>Brightness of the device
+				</li>
+				<li>Lighting
+				</li>
+				<li>Glare
+				</li>
+				<li>Distance and angle
+				</li>
+				<li>Movement, for example, reading on a train
+				</li>
+			</ul>
+			<p lang="ko">
+				종종 사람들은 환경적 요인을 제어합니다. 예를 들어, 방에 조명을 변경하거나, 기기의 밝기를 설정하거나, 그늘진 장소로 이동하거나, 기기의 각도를 변경할 수 있습니다.
+				종종 사람들은 환경을 조금 제어하거나 제어하지 못합니다. 예를 들어, 공공 키오스크를 사용하는 경우.
+			</p>
+			<p lang="en">
+				Sometimes people have control over environmental factors, for example, they can change the lighting in the room, set the brightness of the device, move to a shaded location, or change the angle of the display. Sometimes people have little or no control over the environment, for example, when using a public kiosk.
+			</p>
+			<p lang="ko">
+				[<em>초안 메모 :</em> 태스트 포스는 이 단락의 콘텐트를 변경할 계획입니다.] 
+				작업은 또한 사람의 기능적 시각에 영향을 줄 수 있습니다.
+				예를 들어, 사람은 한 번에 한 글자만을 읽는 시력 검사에 주어진 포인트 크기로 문자를 구별할 수 있지만, 실제로는 동일한 포인트의 크기로 텍스트 블럭을 읽을 수 없습니다.
+				이것은 <em>식별성</em>와 <em>가독성</em> 사이의 차이입니다.
+				<strong>식별성</strong>은 문자를 구별하는 것에 의해 텍스트를 인식하는 것과 관련됩니다.
+				<strong>가독성</strong>는 텍스트 정보를 읽고 이해하는 것과 관련됩니다.
+				따라서 텍스트는 사람에게 어느 정도 읽을 수 있는 것이 될 수 있지만, 기능적으로 읽을 수는 없는—사용자가 다른 것으로부터 한 문자를 구별할 수 있지만 문장을 효과적으로 읽을 수 없는 것과 함께— 것이 될 수 있습니다.
+			</p>
+			<p lang="en">
+				<!-- @@ edit &/or lvtf review: [blocks of text vs. things like field labels]--> [<em>Draft Note:</em> The Task Force plans to change the content of this paragraph.] Tasks may also impact a person’s functional vision. For example, a person may be able to distinguish letters at a given point size on a vision test where they are reading only one letter at a time, but they cannot actually read blocks of text at that same point size. This is the difference between <em>legibility</em> and <em>readability</em>. <strong>Legibility</strong> is related to perceiving text by distinguishing letters. <strong>Readability</strong> is related to reading and comprehending textual information. Thus text could be somewhat legible to a person, yet not functionally readable—with effort that user could distinguish one letter from another, but could not effectively read sentences.
+			</p>
+			<p lang="ko">
+				일부 저시력 접근성 이슈는 직접적으로 기능적 시각과 관련되고 일부는 시각 장애인에 대한 대응과 관련됩니다.
+				예를 들어, 저시력(과 시각 전체 필드)을 가진 사람이 줌 또는 배율을 사용하는 경우, 그들은 주변 필드 손실을 가진 사람과 유사한 어떤 이슈를 가집니다 — 시력을 교정하기 위한 그들의 해결책의 결과로 많은 정보가 시야 밖으로 옮겨지기 때문에.
+			</p>
+			<p lang="en">
+				Some low vision accessibility issues are directly related to functional vision and some are related to adaptations for visual impairments. For example, when a person with low visual acuity (and full field of vision) uses zoom or magnification, they have some similar issues as people with peripheral field loss — as considerable information may be moved outside of their field of vision as a result of their solution to reduced visual acuity.
+			</p>
+		</section>
+	</section>
+	<section id="user-needs" property="bibo:hasPart" resource="#user-needs" typeof="bibo:Chapter">
+		<!--OddPage-->
+		<h2 id="h-user-needs" resource="#h-user-needs">
+			<span property="xhv:role" resource="xhv:heading"><span class="secno">3.</span> 사용자 요구</span>
+		</h2><!-- @@ edit &/or lvtf review: [Low vision accessibility is largely about perceiving textual information. ...] -->
+		<p lang="ko">
+			저시력을 가진 사람들에 가지각색으로 넓게 걸친 사용자 요구와 한 사용자의 요구는 다른 사용자의 여구와 충돌할 수 있습니다.
+			예를 들어, 노인은 높은 명암을 요구할 수 있지만 그것은 빛 민감도를 가진 사람에게는 읽히지 않게 할 수 있습니다; 좋은 시력(선명도)과 터널 비전을 가진 사람은 텍스트 크기를 작게 만들어야 하고 그래서 그들은 더 나은 읽기를 위해 한 번에 더 많은 단어를 볼 수 있지만, 저시력을 가진 대다수 사람들은 큰 텍스트를 요구합니다.
+		</p>
+		<p lang="en">
+			User needs varying widely across people who have low vision, and one user’s needs may conflict with another user’s needs. For example, an older person might need high contrast but that might be unreadable to a person with light sensitivity; a person with good visual acuity (clarity) and tunnel vision might need to make the text size small so they can see more words at a time to read better, whereas most people with low visual acuity need large text.
+		</p>
+		<div class="issue" id="issue-3">
+			<div aria-level="3" class="issue-title marker" id="h-issue3" role="heading">
+				<span>이슈 3</span>
+			</div>
+			<p class="" lang="ko">
+				태스크 포스는 이 섹션을 확장 할 계획입니다.
+			</p>
+			<p class="" lang="en">
+				The Task Force plans to expand this section.
+			</p>
+		</div>
+		<p lang="ko">
+			한 사람의 요구에 대해 매일 매일 혹은 하루 내내 다르게 되어야 하는 것은 희귀하지 않습니다; 
+			예를 들어, 그들은 더 피곤해지거나, 큰 텍스트나 다른 배경색을 요구 할 수 있습니다.
+			작업과 정보의 양은 사용자 요구에 영향을 줍니다.
+			예를 들어, 사람이 이메일을 작성하고 있는 경우, 그들이 작성되고 있는 것을 알고 있고 오타에 대해 걷어내고 있을 뿐이기 때문에 작은 글씨를 가질 수 있습니다; 반면 동일한 사람이 이메일을 읽고 있는 경우, 그들은 콘텐트를 이미 알고 있지 않기 때문에 큰 글자를 요구합니다. <!-- @@ maybe this is too specific an example here? -->
+		</p>
+		<p lang="en">
+			It is not uncommon for one person’s needs to be different from day-to-day or even throughout one day; for example, when they are more fatigued, they might need larger text or a different background color. Task and the amount of information influences user needs. For example, when a person is typing an e-mail, they may be able to have smaller font because they know what is being written and are just skimming for typos; whereas when that same person is reading an e-mail, they need larger font because they do not already know the content. <!-- @@ maybe this is too specific an example here? -->
+		</p>
+		<p lang="ko">
+			따라서 사용자는 그들의 요구를 충족시키기 위한 유저 인터페이스를 조절 할 수 있을 필요가 있습니다.
+			가독성을 위한 개인의 최적의 디스플레이는 종종 매우 분명한 대응을 요구합니다.
+			예를 들어, 높은 빛 민감도와 낮은 명도 민감도를 가진 사람은 배경과 밝지 않고 텍스트를 식별하기 위해 충분한 명암을 제공하는 텍스트 색상들을 설정해야 할 필요가 있습니다.
+		</p>
+		<p lang="en">
+			Thus users need to be able to adjust user interfaces to meet their needs. An individual's optimum display for readability often requires very specific adaptations. For example, a person with high light sensitivity and low contrast sensitivity needs to set background and text colors that are not bright and that provide sufficient contrast for them to discern the text.
+		</p>
+		<p lang="ko">
+			더 많이 혹은 더 적게 구별할 수 있고 읽기 쉽게 만드는 텍스트의 특징은 매우 상호 관계가 있습니다;
+			그것은, 한 특징은 다른 특징에 의존됩니다. 
+			예를 들어, 낮은 명암 민감도를 가진 사람은 5:1의 명암비를 가진 작은 텍스트를 읽지 못할 수 있지만, 다음 텍스트가 더 큰 경우에 그 비율에서 텍스트를 읽을 수 있습니다; 마찬가지로, 어떤 글꼴에서 사람은 자간을 증가시킬 필요가 없지만, 다른 글꼴에서는 그렇지 않습니다.
+		</p>
+		<p lang="en">
+			The characteristics of text that make it more or less legible and readable are highly inter-related; that is, one characteristic is dependent on other characteristics. For example, a person with low contrast sensitivity might not be able to read small text with a contrast ratio of 5:1, but can read text at that ratio when then text is much larger; similarly, with some fonts a person does not need to increase the letter spacing, but with other fonts they do.
+		</p>
+		<p lang="ko">
+			사용자는 아래 카테고리에 의해 그루핑 되는 것이 필요하지만, 아직 일부 양상은 다른 카테고리에 연관되지 않습니다.
+			이 섹션은 사용자 요구를 설명합니다:
+		</p>
+		<p lang="en">
+			The user needs below are grouped by categories, yet some aspects relate to different categories. This section explains user needs for:
+		</p>
+		<ul lang="ko">
+			<li>
+				<a href="#brightness-and-color">밝기와 색상</a>
+			</li>
+			<li>
+				<a href="#tracking">추적</a>
+			</li>
+			<li>
+				<a href="#perceiving">인식</a>
+			</li>
+			<li>
+				<a href="#spacing">읽기를 위한 간격</a>
+			</li>
+			<li>
+				<a href="#identifying-elements">요소 식별</a>
+			</li>
+			<li>
+				<a href="#point-of-regard-and-proximity">응시점과 근접</a>
+			</li>
+			<li>
+				<a href="#work-with-user-settings">사용자 설정에 의한 작업</a>
+			</li>
+		</ul>
+		<ul lang="en">
+			<li>
+				<a href="#brightness-and-color">Brightness and Color</a>
+			</li>
+			<li>
+				<a href="#tracking">Tracking</a>
+			</li>
+			<li>
+				<a href="#perceiving">Perceiving</a>
+			</li>
+			<li>
+				<a href="#spacing">Spacing for Reading</a>
+			</li>
+			<li>
+				<a href="#identifying-elements">Identifying Elements</a>
+			</li>
+			<li>
+				<a href="#point-of-regard-and-proximity">Point of Regard and Proximity</a>
+			</li>
+			<li>
+				<a href="#work-with-user-settings">Work with User Settings</a>
+			</li>
+		</ul>
+		<div class="issue" id="issue-4">
+			<div aria-level="3" class="issue-title marker" id="h-issue4" role="heading">
+				<span>이슈 4</span>
+			</div>
+			<p class="" lang="ko">
+				추가적인 사용자 요구는 명도와 이미지 접근성에 관련하여 추가될 것입니다.
+			</p>
+			<p class="" lang="en">
+				Additional User Needs will be added related to contrast and image accessibility.
+			</p>
+		</div>
+		<p lang="ko">
+			<strong>각각의 섹션은 이슈와 사용자 경험을 간단히 설명하고, "<span class="userneedcolor">사용자 요구 -</span> " 이후에 특정 사용자 요구를 서술합니다.
+			“사용자는 ... 수 있습니다”라고 말하는 사용자 요구는 사용자가 설정을 변경할 수 있다는 것을 나타냅니다.</strong>
+		</p>
+		<p lang="en">
+			<strong>Each section briefly explains the issue and the user experience, and then states a specific user need after "<span class="userneedcolor">User Need -</span> ". User Needs that say “Users can...” indicate that users can change a setting.</strong>
+		</p>
+		<section id="brightness-and-color" property="bibo:hasPart" resource="#brightness-and-color" typeof="bibo:Chapter">
+			<h3 id="h-brightness-and-color" resource="#h-brightness-and-color">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">3.1</span> 밝기와 색상</span>
+			</h3>
+			<p lang="ko">
+				밝기는 휘도와 광도에 관련됩니다. [<em>초안 메모:</em> 태스크 포스는 이 토픽에 추가적인 정보를 연결할 계획입니다.]
+				이 문서는 간결함을 위해 "밝기"를 사용합니다.
+			</p>
+			<p lang="en">
+				Brightness relates to luminance and luminosity. [<em>Draft Note:</em> The Task Force plans to link to additional information on this topic.] This document uses "brightness" for simplicity.
+			</p>
+			<section id="brightness-overall" property="bibo:hasPart" resource="#brightness-overall" typeof="bibo:Chapter">
+				<h4 id="h-brightness-overall" resource="#h-brightness-overall">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.1</span> 전체 밝기</span>
+				</h4>
+				<p lang="ko">
+					스크린이나 다른 소스의 밝은 빛은 어떤 저시력자(광선기피증을 가진 사람 난독증 같은 독서 장애를 가진 사람을 포함하여)가 읽는 것을 방해하고 어떤 사람들의 경우 고통을 유발합니다.
+					어떤 사람들은 그들의 스크린의 밝기를 줄이거나 오버레이를 사용합니다.
+				</p>
+				<p lang="en">
+					Bright light from a screen or other sources prevents some people with low vision (including those with photophobia and with reading disabilities such as dyslexia) from reading and causes pain for some people. Some people turn down the brightness of their screen or use an overlay.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---brightness">
+						사용자 요구 - 밝기:
+					</h4>
+					<p lang="ko">
+						사용자는 디스플레이의 전체 밝기를 설정할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can set the overall brightness of a display.
+					</p>
+				</div>
+			</section>
+			<section id="text-contrast" property="bibo:hasPart" resource="#text-contrast" typeof="bibo:Chapter">
+				<h4 id="h-text-contrast" resource="#h-text-contrast">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.2</span> 텍스트 명암</span>
+				</h4>
+				<p lang="ko">
+					<a href="#light-sensitivity">빛 민감도</a> 섹션에 언급된 바와 같이, 어떤 사람들은 특별히 배경에 대해, 낮은 밝기가 필요합니다.
+					배경에 대해 낮은 밝기가 요구되는 어떤 사람들은 또한 낮은 전체 밝기가 필요하고 따라서 낮은 밝기의 텍스트가 필요합니다.
+				</p>
+				<p lang="en">
+					As mentioned in the <a href="#light-sensitivity">Light Sensitivity</a> section, some people need low brightness, especially for backgrounds. Some people who need low brightness for backgrounds also need low brightness overall and thus need low brightness text.
+				</p>
+				<p lang="ko">
+					노화로부터 <a href="#contrast-sensitivity">명도 민감도</a>를 잃은 많은 노인들을 포함하여, 다른 사람들은 텍스트와 배경 사이에 높은 대비가 필요합니다.
+					일부는 밝은 배경에 어두운 텍스트를 더 잘 읽습니다.
+				</p>
+				<p lang="en">
+					Other people need high contrast between text and background, including many older people who lose <a href="#contrast-sensitivity">contrast sensitivity</a> from ageing. Some read better with dark text on light background.
+				</p>
+				<p lang="ko">
+					어떤 사람들의 경우, 보통 색상 조합이나 제한된 색상 팔레트로부터의 색상은 잘 됩니다. 예를 들어, 흰 배경에 검은 텍스트 혹은 검은 배경에 흰 글씨를 가진 반대.
+					다른 사람들은 좀 더 특정한 배경과 텍스트 색상을 선택하는 것이 필요합니다.
+					예를 들어, 전체적으로 낮은 밝기가 필요한 사람들은 그들에게 여전히 너무 높은 밝기가 아닌 충분한 대비를 제공하는 특정한 배경과 텍스트 색상을 선택할 필요가 있습니다.
+					읽을 수 있고 최적의 색상 조합은 개인들 사이에서 엄청나게 다르고 한 개인에 대해서 조차 피로와 조명 같은 조건에 따라 다를 수 있습니다.
+				</p>
+				<p lang="en">
+					For some people, common color combinations or colors from a limited color palette work fine, for example, black text on white background or the inverse with white text on black background. Other people need to select more specific background and text colors. For example, people who need low brightness overall, need to select the specific background and text colors that provide sufficient contrast for them yet not too high brightness. Readable and optimal color combinations differs vastly among individuals and can even vary for one individual depending on conditions such as fatigue and lighting.
+				</p>
+				<figure id="fig-web-page-with-author-defined-colors-with-low-contrast---light-background-gray-text-light-green-headings">
+					<img alt="screen capture" height="299" src="images/eg-gray.png" width="470">
+					<figcaption lang="ko">
+						Fig. <span class="figno">8</span> <span class="fig-title">낮은 대비로 저자-정의된 색상을 가진 웹 페이지 - 밝은 배경, 회색 텍스트, 밝은 녹색 제목</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">8</span> <span class="fig-title">Web page with author-defined colors with low contrast - light background, gray text, light green headings</span>
+					</figcaption>
+				</figure>
+				<figure id="fig-web-page-with-user-style-with-medium-contrast---brown-background-tan-text-headings-of-different-dull-colors">
+					<img alt="screen capture" height="299" src="images/eg-lowcontrast.png" width="453">
+					<figcaption lang="ko">
+						Fig. <span class="figno">9</span> <span class="fig-title">중간 대비 사용자 스타일을 가진 웹 페이지 - 갈색 배경, 황갈색 텍스트, 다른 칙칙한 색상의 제목</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">9</span> <span class="fig-title">Web page with user style with medium contrast - brown background, tan text, headings of different dull colors</span>
+					</figcaption>
+				</figure>
+				<figure id="fig-web-page-with-user-style-with-high-contrast---black-background-white-text-headings-of-different-bright-colors">
+					<img alt="screen capture" height="299" src="images/eg-highcontrast.png" width="457">
+					<figcaption lang="ko">
+						Fig. <span class="figno">10</span> <span class="fig-title">높은 대비 사용자 스타일을 가진 웹 페이지 - 검정 배경, 흰색 텍스트, 다른 밝은 색상의 제목</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">10</span> <span class="fig-title">Web page with user style with high contrast - black background, white text, headings of different bright colors</span>
+					</figcaption>
+				</figure>
+				<div class="advisement">
+					<h4 id="user-need---contrast">
+						사용자 요구 - 명암:
+					</h4>
+					<p lang="ko">
+						사용자는 전체 색상 범위에서 배경 색상과 텍스트 컬러를 설정할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can set the background color and the text color from the full color spectrum.
+					</p>
+				</div>
+			</section>
+			<section id="not-relying-on-color" property="bibo:hasPart" resource="#not-relying-on-color" typeof="bibo:Chapter">
+				<h4 id="h-not-relying-on-color" resource="#h-not-relying-on-color">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.3</span> 색상에 의존하지 않는 것</span>
+				</h4>
+				<p lang="ko">
+					어떤 사람들은 색상을 구별할 수 없습니다... [<em>초안 메모:</em> 태스크 포스는 여기에 추가적인 정보를 추가할 계획입니다.]
+				</p>
+				<p lang="en">
+					Some people cannot distinguish colors... [<em>Draft Note:</em> The Task Force plans to add additional information here.]
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---color">
+						사용자 요구 - 색상:
+					</h4>
+					<p lang="ko">
+						색상은 단지 정보를 전달하거나, 동작을 나타내거나, 응답을 유도하거나, 시각적 요소를 구별하는 시각적인 수단이 아닙니다.
+					</p>
+					<p lang="en">
+						Color is not the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.
+					</p>
+				</div>
+			</section>
+		</section>
+		<section id="tracking" property="bibo:hasPart" resource="#tracking" typeof="bibo:Chapter">
+			<h3 id="h-tracking" resource="#h-tracking">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">3.2</span> 추적</span>
+			</h3>
+			<p lang="ko">
+				추적은, 한 라인의 끝에서부터 텍스트의 다름 행의 시작까지 얻는 것을 포함하여, 텍스트의 라인을 따라 쫓아가는 것입니다.
+			</p>
+			<p lang="en">
+				Tracking is following along lines of text, including getting from the end of one line to the beginning of the next line of text.
+			</p>
+			<p lang="ko">
+				이 섹션은 재포장, 리플로우, 줄 길이, 하이픈 연결을 포함합니다.
+				추적은 또한, 특히 텍스트 블럭이 컬럼에 있거나 다른 텍스트 근처에 있을 경우, <a href="#leading">줄 간격</a>, <a href="#justification">자리맞춤</a>, <a href="#margins-and-borders">여백과 테두리</a>에 의해 영향을 받습니다.
+			</p>
+			<p lang="en">
+				This section includes rewrap, reflow, line length, and hyphenation. Tracking is also impacted by <a href="#leading">leading</a>, <a href="#justification">justification</a>, and <a href="#margins-and-borders">margins and borders</a>, especially when blocks of text are in columns or near other text.
+			</p>
+			<section id="rewrap-for-one-direction-scrolling" property="bibo:hasPart" resource="#rewrap-for-one-direction-scrolling" typeof="bibo:Chapter">
+				<h4 id="h-rewrap-for-one-direction-scrolling" resource="#h-rewrap-for-one-direction-scrolling">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.1</span> 한 방향 스크롤링을 위한 재포장</span>
+				</h4>
+				<p lang="ko">
+					장애가 있는 많은 사람들과 장애가 없는 많은 사람들의 경우, 텍스트의 라인을 읽기 위해 앞 뒤로 스크롤 해야 할 때 읽는 것이 어렵습니다.
+					저시력자들이 텍스트 크기를 증가시키고 텍스트가 "리플로우"하지 않는 경우, 그들은 때때로 텍스트의 단일 라인을 읽기 위해 스크린을 수평으로 여러 번 스크롤 해야 합니다.
+					게다가, 스크롤 바와 커서가 일부 찾기 어렵습니다.
+					텍스트의 라인 끝에서 가져오는 것, 왼쪽으로 다시 스크롤링 하는 것, 그 후 다음 라인의 시작을 찾아 얻는 것은 상당한 주의를 취할 수 있습니다.
+					이것은 읽는 흐름과 이해를 떨어뜨리고, 가로 스크롤링이 요구되는 경우 때때로 효과적인 읽기가 불가능 하기가 상당히 충분합니다.
+				</p>
+				<p lang="en">
+					For many people, with and without disabilities, it is difficult to read when they have to scroll back and forth to read a line of text. When people with low vision increase the text size and the text doesn't “reflow”, they sometimes have to scroll horizontally several screens to read a single line of text. Additionally, the scrollbar and cursor is harder to find for some. Getting from the end of a line of text, scrolling back left, and then finding the beginning of the next line can take considerable attention. This degrades reading flow and comprehension, sometimes significantly enough that effective reading is not possible when horizontal scrolling is required.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---rewrap">
+						사용자 요구 - 재포장:
+					</h4>
+					<p lang="ko">
+						스크롤링의 한 방향만 요구되기 위해, 예를 들어 왼쪽에서 오른쪽 그리고 오른쪽에서 왼쪽 스크립트(언어)에 대해, 텍스트 블럭은 보통 수직 스크롤링을 재포장하고 가로 스크롤링은 하지 않습니다.
+					</p>
+					<p lang="en">
+						Blocks of text rewrap so that only one direction of scrolling is needed, e.g., for left-right and right-left scripts (languages), usually vertical scrolling and not horizontal scrolling.
+					</p>
+				</div>
+				<div class="issue" id="issue-5">
+					<div aria-level="5" class="issue-title marker" id="h-issue5" role="heading">
+						<span>이슈 5</span>
+					</div>
+					<p class="" id="script-direction" lang="ko">
+						스크립트 방향: 위의 재포장과 아래 리플로우는 간결함을 위해 현재로는 왼쪽에서 오른쪽 그리고 오른쪽에서 왼쪽 스크립트로 작성됩니다. 우리는 그것을 적절하게 위에서 아래 스크립트에 또한 수직으로 적용하는 것이 일반적이도록 편집할 것입니다 — 우리가 그것을 너무 복잡하게 만드는 것 없이 할 수 있거나, 혹은 예로만 그것을 변경한다면.<br>
+						<a href="http://www.i18nguy.com/temp/rtl.html">스크립트 vs. 언어 참조</a>는 “언어는 방향을 가지지 않습니다. 스크립트는 쓰기 방향을 가집니다”라고 말합니다.
+					</p>
+					<p class="" id="script-direction" lang="en">
+						Script direction: Rewrap above and Reflow below are written for left-right and right-left scripts for now for simplicity. We'll edit it to make it generic to apply also vertically to top-to-bottom scripts as appropriate — if we can without complicating it too much, or change it to example only.<br>
+						<a href="http://www.i18nguy.com/temp/rtl.html">script vs. language reference</a> says “Languages don't have a direction. Scripts have a writing direction”.
+					</p>
+				</div>
+			</section>
+			<section id="reflow-to-single-column" property="bibo:hasPart" resource="#reflow-to-single-column" typeof="bibo:Chapter">
+				<h4 id="h-reflow-to-single-column" resource="#h-reflow-to-single-column">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.2</span> 단일 컬럼으로의 리플로우</span>
+				</h4>
+				<p lang="ko">
+					장애가 있는 많은 사람들과 장애가 없는 많은 사람들의 경우, 텍스트의 컬럼의 바닥으로부터 다른 컬럼의 맨 위로 스크롤 해야 할 때 읽는 것이 더 어렵습니다.
+					여러 컬럼을 보는 일부 저시력자의 경우, 한 컬럼의 바닥에서 다음 컬럼의 맨 위를 얻기 위해 여러 번 스크린을 위로 스크롤 해야 합니다.
+					게다가, 스크롤 바와 커서가 일부 찾기 어렵습니다.
+					컬럼의 바닥으로부터 얻는 것과 다음 컬럼의 맨 위를 찾는 것은 상당한 주의를 취할 수 있습니다.
+					이것은, 때때로 상당히, 읽는 흐름과 이해를 떨어뜨립니다.
+				</p>
+				<p lang="en">
+					For many people, with and without disabilities, it is more difficult to read when they have to scroll from the bottom of a column of text to the top of another column. For some people with low vision, with multiple columns, they have to scroll up several screens to get from the bottom of one column to the top of the next. Additionally, the scrollbar and cursor is harder to find for some. Getting from the bottom of a column and finding the top of the next column can take considerable attention. This degrades reading flow and comprehension, sometimes significantly.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---reflow">
+						사용자 요구 - 리플로우:
+					</h4>
+					<p lang="ko">
+						사용자는 여러 컬럼 대신 하나의 연결된 블럭 내에 텍스트 블럭을 설정할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can set blocks of text in one continuous block, instead of in multiple columns.
+					</p>
+				</div>
+			</section>
+			<section id="line-length" property="bibo:hasPart" resource="#line-length" typeof="bibo:Chapter">
+				<h4 id="h-line-length" resource="#h-line-length">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.3</span> 줄 길이</span>
+				</h4>
+				<p lang="ko">
+					장애가 있는 많은 사람들과 장애가 없는 많은 사람들의 경우, 텍스트의 짧은 줄보다 매우 긴 줄이 읽기 더 어렵습니다.
+					작은 시야를 가진 사람들의 경우, 텍스트의 긴 줄이 읽기 더 어려게 될 수 있을 뿐 아니라, 텍스트의 줄 끝에서 다음 줄의 처음을 찾는 것 역시 어렵게 될 수 있습니다.
+				</p>
+				<p lang="en">
+					For many people, with and without disabilities, it is harder to read very long lines of text than shorter lines. For people with a small field of vision, it can be even more difficult to read long lines of text, and from the end of a line of text, to find the beginning of the next line.
+				</p>
+				<p lang="ko">
+					좋은 시력을 가지고 있지만 시야가 여전히 작은 사람들은 텍스트 크기를 작게 설정하고 텍스트 영역을 좁게 설정해서 그들의 시야에 더 많은 문자들을 얻을 수 있게 되기를 원할 수 있습니다.
+				</p>
+				<p lang="en">
+					People with good visual acuity yet small field of vision might want to set the text size small and the text area narrow so they can get more characters in their field of vision.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---line-length">
+						사용자 요구 - 줄 길이:
+					</h4>
+					<p lang="ko">
+						사용자는 텍스트 블럭의 줄 길이를 설정할 수 있습니다.
+						종종 이를 수행하는 가장 쉬운 방법은 (개발자, 디자이너, 사용자의 경우) 사용자로 하여금 텍스트 영역의 크기를 조정하게 하는 것과 줄 길이를 변경하기 위해 텍스트를 재포장하는 것입니다.
+					</p>
+					<p lang="en">
+						Users can set the line length for blocks of text. Often the easiest way to do this (for developers, designers, and users) is for users to resize text areas and the text rewraps to change the line length.
+					</p>
+				</div>
+			</section>
+			<section id="hyphenation" property="bibo:hasPart" resource="#hyphenation" typeof="bibo:Chapter">
+				<h4 id="h-hyphenation" resource="#h-hyphenation">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.4</span> 하이픈 연결</span>
+				</h4>
+				<p lang="ko">
+					어떤 사람들의 경우 하이픈으로 연결된 단어를 이해하는 것이 특히 어렵고, 그들은 하이픈 연결을 해제해야 할 필요가 있습니다.
+					주로 이슈는 인지 장애가 있는 사람들의 경우이지만, 텍스트 크키가 증가될때 하이픈 연결은 이상의 이슈가 되므로, 따라서 또한 저시력과도 관련이 있습니다.
+					매우 큰 텍스트를 보는 어떤 사람들은 텍스트 라인에 더 많은 문자가 끼워지도록 하이픈 연결을 선호 할 수 있습니다.
+				</p>
+				<p lang="en">
+					For some people it is especially difficult to understand words that are hyphenated, and they need to turn off hyphenation. While primarily an issue for people with cognitive impairments, hyphenation becomes more of an issue when text size is increased, thus it is also related to low vision. Some people with very large text may prefer hyphenation on so that more characters fit on a line of text.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---hyphenation">
+						사용자 요구 - 하이픈 연결:
+					</h4>
+					<p lang="ko">
+						사용자는 하이픈 연결을 켜거나 끌 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can turn hyphenation on or off.
+					</p>
+				</div>
+			</section>
+		</section>
+		<section id="perceiving" property="bibo:hasPart" resource="#perceiving" typeof="bibo:Chapter">
+			<h3 id="h-perceiving" resource="#h-perceiving">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">3.3</span> 인식</span>
+			</h3>
+			<p lang="ko">
+				인식은 그 특성에 기반하여 개별 문자를 알아볼 수 있는 것, 식별성과, 비 텍스트 정보와 인터페이스 요소를 포함합니다.
+			</p>
+			<p lang="en">
+				Perceiving includes being able to recognize individual letters based on their characteristics, which is legibility, and non-text information and interface elements.
+			</p>
+			<p lang="ko">
+				이 섹션은 텍스트 크기, 폰트, 스타일, 대문자 사용, 모든 요소들의 크기를 포함합니다.
+				<a href="#spacing">간격</a> 또한 문자를 알아볼 수 있게 하는 것을 어떻게 어렵게 만드는지에 영향을 줍니다. 
+			</p>
+			<p lang="en">
+				This section includes text size, font, style, capitalization, and size of all elements. <a href="#spacing">Spacing</a> also impacts how hard it is to perceive letters.
+			</p>
+			<section id="text-size" property="bibo:hasPart" resource="#text-size" typeof="bibo:Chapter">
+				<h4 id="h-text-size" resource="#h-text-size">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.1</span> 텍스트 크기</span>
+				</h4>
+				<p lang="ko">
+					어떤 사람들은 문자를 인식하기 위하여 큰 텍스트가 필요합니다.
+					크기를 증가시키는 것이 가장 일반적이기는 하지만, 터널 비전과 좋은 시력을 가진 어떤 사람들은 한 번에 많은 단어들을 볼 수 있도록 더 작은 글자를 선호할 수도 있습니다.
+				</p>
+				<p lang="en">
+					Some people need larger text in order to perceive letters. Although increasing size is most common, some people with tunnel vision and good visual acuity may prefer smaller letters so they can see more words at a time.
+				</p>
+				<p lang="ko">
+					이슈들 예:
+				</p>
+				<p lang="en">
+					Example issues:
+				</p>
+				<ul lang="ko">
+					<li>
+						텍스트 설정이 툴팁 텍스트와 다른 팝업 텍스트에서 텍스트를 증가시키지 않습니다.
+					</li>
+					<li>
+						텍스트 설정이 이미지 내 텍스트를 증가시키지 않습니다.
+					</li>
+					<li>
+						텍스트 설정이 지도 내 텍스트를 증가시키지 않습니다.
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>Text settings don't increase the text in tool-tip text and other pop-up text
+					</li>
+					<li>Text settings don't increase the text in images
+					</li>
+					<li>Text settings don't increase the text in maps<!-- @@ edit &/or lvtf review:  [@@ is this different from images?]  -->
+					</li>
+				</ul>
+				<div class="advisement">
+					<h4 id="user-need---text-size">
+						사용자 요구 - 텍스트 크기:
+					</h4>
+					<p lang="ko">
+						사용자는 전체 인터페이스의 확대 축소 없이, 모든 텍스트의 텍스트 크기(폰트 크기)를 변경할 수 있다.
+					</p>
+					<p lang="en">
+						Users can change the text size (font size) of all text, without zooming the entire interface.
+					</p>
+				</div>
+			</section>
+			<section id="font" property="bibo:hasPart" resource="#font" typeof="bibo:Chapter">
+				<h4 id="h-font" resource="#h-font">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.2</span> 폰트</span>
+				</h4>
+				<p lang="ko">
+					어떤 폰트/활자체는 다른 것들보다 더 읽기 쉽습니다.
+					예를 들어, 어떤 사람들은 서브 픽셀 렌더링 폰트를 읽을 수 없습니다.
+				</p>
+				<p lang="en">
+					Some fonts/typefaces are more readable than others. For example, some people cannot read fonts with sub-pixel rendering.
+				</p>
+				<p lang="ko">
+					툴 개발자를 위한 메모: 사용자가 선택할 폰트의 리스트를 제공하는 경우, 폰트 자체에 폰트 이름 — 예를 들어, Times, Veranda, Courier — 을 제시하여 사용자가 각 폰트를 선택하기 전에 어떻게 보이는지를 알릴 수 있습니다.
+				</p>
+				<p lang="en">
+					Note to tool developers: When providing users a list of fonts to choose from, present the font name in the font itself — e.g., Times, Veranda, Courier — so users can tell what each font looks like before choosing it.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---font">
+						사용자 요구 - 폰트:
+					</h4>
+					<p lang="ko">
+						사용자는 세리프와 산세리프 폰트를 포함하여 폰트의 넓은 범위에서 선택하여, 모든 텍스트의 font face(font family나 typeface로도 불립니다)을 변경할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can change the font face (also called font family or typeface) of all text, choosing from a wide range of fonts including serif and sans serif fonts.
+					</p>
+				</div>
+			</section>
+			<section id="style" property="bibo:hasPart" resource="#style" typeof="bibo:Chapter">
+				<h4 id="h-style" resource="#h-style">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.3</span> 스타일</span>
+				</h4>
+				<p lang="ko">
+					어떤 사람들의 경우, 굵은 텍스트는 읽기 더 쉽습니다.
+					어떤 사람들의 경우, 모든 밑줄이 그어지거나 기울여진 텍스트 블럭을 읽는 것이 어렵습니다.
+				</p>
+				<p lang="en">
+					For some people, bold text is easier to read. For some people, it is difficult to read blocks of text that is all underlined or italicized.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---style">
+						사용자 요구 - 스타일:
+					</h4>
+					<p lang="ko">
+						사용자는 텍스트 블럭의 텍스트 스타일(밑줄, 기울임, 굵게)을 변경할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can change the text style (underline, italic, bold) of blocks of text.
+					</p>
+				</div>
+			</section>
+			<section id="capitalization" property="bibo:hasPart" resource="#capitalization" typeof="bibo:Chapter">
+				<h4 id="h-capitalization" resource="#h-capitalization">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.4</span> 대문자 사용</span>
+				</h4>
+				<p lang="ko">
+					모두 대문자로 된 텍스트는 장애가 있는 대부분의 사람들과 장애가 없는 대부분의 사람들의 경우 읽는 것이 더 어렵습니다.
+				</p>
+				<p lang="en">
+					Text in all capital letters is more difficult to read for most people, with and without disabilities.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---capitalization">
+						사용자 요구 - 대문자 사용:
+					</h4>
+					<p lang="ko">
+						사용자는 텍스트 블럭의 대문자 사용(모든 대문자, 작은 대문자, 문장 스타일)를 변경할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can change the capitalization (all capital letters, small capital letters, sentence style) of blocks of text.
+					</p>
+				</div>
+			</section>
+			<section id="size-of-all-elements" property="bibo:hasPart" resource="#size-of-all-elements" typeof="bibo:Chapter">
+				<h4 id="h-size-of-all-elements" resource="#h-size-of-all-elements">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.5</span> 모든 요소의 크기</span>
+				</h4>
+				<p lang="ko">
+					어떤 사람들은 정보를 인식하기 위하여 모든 인터페이스 요소들의 크기를 증가시킬 필요가 있습니다.
+					크기를 증가시키는 것이 가장 일반적이기는 하지만, 터널 비전과 좋은 시력을 가진 어떤 사람들은 한 번에 많은 정보를 볼 수 있도록 감소시키는 것을 선호할 수도 있습니다.
+					예를 들어, 사용자가 필요 한 것:
+				</p>
+				<p lang="en">
+					Some people need to increase the size of all interface elements in order to perceive information. Although increasing size is most common, some people with tunnel vision and good visual acuity may prefer to decrease the size so they can see more information at a time. For example, users need to:
+				</p>
+				<ul lang="ko">
+					<li>
+						모든 것을 크게 만들기 위해 확대.
+					</li>
+					<li>
+						일반적으로 운영체제 수준에서 수행되는, 텍스트 커서의 너비를 증가.
+					</li>
+					<li>
+						일반적으로 운영체제 수준에서 수행되는, 마우스 포인터의 크기를 증가.
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>Zoom to make everything larger.
+					</li>
+					<li>Increase the width of the text cursor, which is usually done at the operating system level.
+					</li>
+					<li>Increase the size of the mouse pointer, which is usually done at the operating system level.
+					</li>
+				</ul>
+				<div class="advisement">
+					<h4 id="user-need---size">
+						사용자 요구 - 크기:
+					</h4>
+					<p lang="ko">
+						사용자는 모든 요소들의 크기를 변경 할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can change the size of all elements.
+					</p>
+				</div>
+			</section>
+		</section>
+		<section property="bibo:hasPart" resource="#spacing" typeof="bibo:Chapter">
+			<h3 id="spacing" resource="#spacing">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">3.4</span> 읽기를 위한 간격</span>
+			</h3>
+			<p lang="ko">
+				라인 사이의 공간과 단어 사이의 공간 같은 간격은 가독성에 영향을 줍니다.
+			</p>
+			<p lang="en">
+				Spacing such as space between lines and space between words impacts readability.
+			</p>
+			<p lang="ko">
+				이 섹션은 줄 간격, 자간, 띄어쓰기, 자리맞춤, 여백과 테두리, 요소간 간격을 포함합니다.
+			</p>
+			<p lang="en">
+				This section includes leading, letter spacing, word spacing, justification, margins and borders, and spacing between elements.
+			</p>
+			<section id="leading" property="bibo:hasPart" resource="#leading" typeof="bibo:Chapter">
+				<h4 id="h-leading" resource="#h-leading">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.1</span> 줄 간격</span>
+				</h4>
+				<p lang="ko">
+					줄 간격은 텍스트 블럭 내 라인 사이의 공간입니다.
+					이것은 line spacing과 line height로도 불립니다.
+					어떤 사람들은 텍스트를 읽을 수 있도록 라인 사이의 더 많은 공백이 필요합니다.
+					줄 간격은 또한 추적을 돕습니다.
+				</p>
+				<p lang="en">
+					Leading is the space between lines in a block of text. It is also called line spacing and line height. Some people need more space between lines to be able to read text. Leading also helps with tracking.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---leading">
+						사용자 요구 - 줄간격:
+					</h4>
+					<p lang="ko">
+						사용자는 텍스트 블럭의 줄간격(line spacing, line height)을 변경할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can change the leading (line spacing, line height) of blocks of text.
+					</p>
+				</div>
+			</section>
+			<section id="letter-spacing" property="bibo:hasPart" resource="#letter-spacing" typeof="bibo:Chapter">
+				<h4 id="h-letter-spacing" resource="#h-letter-spacing">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.2</span> 자간</span>
+				</h4>
+				<p lang="ko">
+					어떤 사람들을 텍스트를 읽기 위해 글자 사이의 더 많은 공백이 필요합니다.
+				</p>
+				<p lang="en">
+					Some people need more space between letters to read text.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---letter-spacing">
+						사용자 요구 - 자간:
+					</h4>
+					<p lang="ko">
+						사용자는 텍스트 블럭의 자간(글자/부호 사이 공백)을 변경 할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can change the letter spacing (space between letters/characters) of blocks of text.
+					</p>
+				</div>
+			</section>
+			<section id="word-spacing" property="bibo:hasPart" resource="#word-spacing" typeof="bibo:Chapter">
+				<h4 id="h-word-spacing" resource="#h-word-spacing">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.3</span> 띄어쓰기</span>
+				</h4>
+				<p lang="ko">
+					어떤 사람들은 텍스트를 읽기 위해 단어들 사이에 더 많은 공백이 필요합니다.
+				</p>
+				<p lang="en">
+					Some people need more space between words to read text.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---word-spacing">
+						사용자 요구 - 띄어 쓰기:
+					</h4>
+					<p lang="ko">
+						사용자는 텍스트 블럭의 띄어 쓰기(단어들 사이의 공백)을 변경 할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can change the word spacing (space between words) of blocks of text.
+					</p>
+				</div>
+			</section>
+			<section id="justification" property="bibo:hasPart" resource="#justification" typeof="bibo:Chapter">
+				<h4 id="h-justification" resource="#h-justification">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.4</span> 자리맞춤</span>
+				</h4>
+				<p lang="ko">
+					자리맞춤이나 정렬 옵션들은 보통 다음을 포함합니다 : 왼쪽, 오른쪽, 양쪽, 가운데.
+				</p>
+				<p lang="en">
+					Justification or alignment options usually include: left, right, full/both, centered.
+				</p>
+				<p lang="ko">
+					자리맞춤은 가독성과 추적에 영향을 줍니다.
+					때로는 양쪽 자리 맞춤은 단어 사이에 필요 이상의 공백이 “rivers of white”를 텍스트의 라인을 따라 추적하기 어렵게 만드는 것을 야기하거나, 단어 사이의 작은 공백이 독립된 단어를 구별하는 것을 어렵게 만드는 것을 야기하기 때문에 읽는 것을 더 어렵게 만듭니다.
+					어떤 사람들은 양쪽 맞춤으로 한 라인의 끝에서 다음을 추적하는 것이 더 쉽다는 것을 발견하고, 다른 누군가는 왼쪽 자리맞춤(왼쪽에서 오른쪽 스크립트의 경우)을 선호합니다. [<em>초안 메모:</em> 테스크 포스는 “river”나 “river of white”에 대한 정의 용어 사전을 추가할 계획입니다. 현재로는, 여기 설명과 예가 있습니다. : <a href="https://en.wikipedia.org/wiki/River_(typography)">River (typography)</a>.]
+				</p>
+				<p lang="en">
+					Justification impacts readability and tracking. Sometimes full justification makes reading more difficult because extra space between words causes “rivers of white” making it difficult to track along a line of text, or less space between words makes it difficult to distinguish separate words. Some people find it easier to track from the end of one line to the next with full justification, and others prefer left justification (for left-to-right scripts). [<em>Draft Note:</em> The Task Force plans to add a glossary definition for “river” or “river of white”. For now, here's an explanation and example: <a href="https://en.wikipedia.org/wiki/River_(typography)">River (typography)</a>.]
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---justification">
+						사용자 요구 - 자리맞춤:
+					</h4>
+					<p lang="ko">
+						사용자는 텍스트 블럭의 자리맞춤 / 정렬(왼쪽, 오른쪽, 양쪽, 가운데)를 변경할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can change the justification / alignment (left, right, full/both, centered) of blocks of text.
+					</p>
+				</div>
+			</section>
+			<section id="margins-and-borders" property="bibo:hasPart" resource="#margins-and-borders" typeof="bibo:Chapter">
+				<h4 id="h-margins-and-borders" resource="#h-margins-and-borders">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.5</span> 여백과 테두리</span>
+				</h4>
+				<p lang="ko">
+					텍스트가 모서리에 가깝다면, 어떤 사람들에게 문자를 구별하는 것이 어렵고 가독성에 부정적인 영향을 줍니다.
+					텍스트 블럭 주변으로 넓은 여백을 가지는 것은 어떤 사람들이 텍스트에 초점을 두는 것을 돕고 주변 텍스트, 이미지, 기타 등등에 의해 산만해지지 않습니다.
+					이것은 특히 텍스트 블럭이 컬럼 내에나 다른 텍스트 가까이에 있을 경우 탐색에 대해 중요합니다.
+				</p>
+				<p lang="en">
+					If text is close to edges, it is hard for some people to distinguish letters and it negatively impacts readability. Having wide margins around blocks of text helps some people focus on the text and not get distracted by surround text, images, etc. This is especially important for tracking when blocks of text are in columns or near other text.
+				</p>
+				<p lang="ko">
+					매우 큰 텍스트가 필요한 사람의 경우, 넓은 여백은 라인 길이를 매우 짧게 만들 수 있습니다.
+					터널 비전이 있는 사람의 경우, 넓은 여백은 텍스트를 추적하는 것을 어렵게 만들 수 있습니다.
+					그러므로, 어떤 사람들은 텍스트 블럭을 구분짓기 위해 여백 대신 혹은 여백에 추가로 테두리가 필요할 것입니다.
+				</p>
+				<p lang="en">
+					For people who need very large text, wide margins could make line length too short. For people with tunnel vision, wide margins could make it hard to track text. Therefore, some people might need borders to separate blocks of text instead of, or in addition to, margins.
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---margins-and-borders">
+						사용자 요구 - 여백과 테두리:
+					</h4>
+					<p lang="ko">
+						사용자는 텍스트 블럭 주변에 여백(빈 공간)과 테두리 — 선 색, 두께, 스타일을 포함하여 — 를 변경할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can change the margins (blank space) and borders — including line color, width, style — around blocks of text.
+					</p>
+				</div>
+			</section>
+			<section id="spacing-between-elements" property="bibo:hasPart" resource="#spacing-between-elements" typeof="bibo:Chapter">
+				<h4 id="h-spacing-between-elements" resource="#h-spacing-between-elements">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.6</span> 요소 사이 간격</span>
+				</h4>
+				<p lang="ko">
+					관련 없는 요소들 사이에 공간을 추가적인 공간을 가지는 것은 사람들이 관련된 정보를 분류하는 것을 돕습니다.
+					예를 들어, 제목 위와 그 아래 적은 공간에 더 많은 공간을 가지는 것은, 아래의 텍스트와 제목을 연관짓는 것을 돕습니다.
+				</p>
+				<p lang="en">
+					Having additional space between unrelated elements helps people group related information. For example, having more space above a heading and less space below it, helps associate the heading with the text below.
+				</p>
+				<p lang="ko">
+					[<em>초안 메모:</em> 추가될 가능성이 있는 삽화 : 제목 이전과 이후 공백 vs. 제목 위 더 많은 공간과 그 아래 적은 공간과 동일한 예.]
+				</p>
+				<p lang="en">
+					[<em>Draft Note:</em> Possible figures to be added: examples equal space before &amp; after headings vs. more space above a heading and less space below it.]
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---spacing-between-elements">
+						사용자 요구 - 요소 사이 간격:
+					</h4>
+					<p lang="ko">
+						간격은 연관된 요소를 분류하고 적게 연관된 요소를 구분짓습니다.
+					</p>
+					<p lang="en">
+						Spacing groups related elements and separates less related elements.
+					</p>
+				</div>
+			</section>
+		</section>
+		<section id="identifying-elements" property="bibo:hasPart" resource="#identifying-elements" typeof="bibo:Chapter">
+			<h3 id="h-identifying-elements" resource="#h-identifying-elements">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">3.5</span> 요소 식별</span>
+			</h3>
+			<p lang="ko">
+				요소를 식별하는 것은 제목과 목록같은 요소들을 구별하는 것에 관한 것입니다.
+			</p>
+			<p lang="en">
+				Identifying elements is about distinguishing elements such as headings and lists.
+			</p>
+			<section id="element-level-customization" property="bibo:hasPart" resource="#element-level-customization" typeof="bibo:Chapter">
+				<h4 id="h-element-level-customization" resource="#h-element-level-customization">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.5.1</span> 요소 수준 맞춤화</span>
+				</h4>
+				<p lang="ko">
+					어떤 사람들은 제목 같은 텍스트의 유형을 구별하기 쉽도록 만들기 위해 특정한 요소가 표시되는 방식을 변경합니다.
+					모든 텍스트가 비례적으로 증가된다면, 제목은 사람들이 본문 텍스트를 읽기에 필요한 것보다 매우 크고 거대하게 될 수 있습니다.
+					그래서 어떤 사람들은 제목에 대해 더 작게 하고 폰트, 색상 같은 스타일링을 사용하는 것과, 제목 수준을 구별하기 위한 들여쓰기를 선호합니다.
+				</p>
+				<p lang="en">
+					Some people change the way certain elements are displayed to make it easier to distinguish types of text, such as headings. If all text is increased proportionally, headings can become very large and bigger than people need to read the main body text. So some people prefer for headings to be smaller and they use styling such as font, color, and indentation to distinguish heading levels.
+				</p>
+				<figure id="fig-web-page-with-author-style">
+					<img alt="screen capture" src="images/eg-style-author.png">
+					<figcaption lang="ko">
+						Fig. <span class="figno">11</span> <span class="fig-title">저자 스타일 웹 페이지</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">11</span> <span class="fig-title">Web page with author style</span>
+					</figcaption>
+				</figure>
+				<figure id="fig-web-page-with-user-style---with-different-fonts-indentation-borders-different-colors-and-dots-preceding-text-to-differentiate-heading-levels">
+					<img alt="screen capture" src="images/eg-style-low.png">
+					<figcaption lang="ko">
+						Fig. <span class="figno">12</span> <span class="fig-title">사용자 스타일 웹 페이지 - 제목 수준을 구별하기 위해 다른 폰트, 들여쓰기, 테두리, 다른 색상, 텍스트 앞의 점으로</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">12</span> <span class="fig-title">Web page with user style - with different fonts, indentation, borders, different colors, and dots preceding text to differentiate heading levels</span>
+					</figcaption>
+				</figure>
+				<figure id="fig-web-page-with-user-style---with-different-fonts-indentation-and-colors-to-differentiate-heading-levels">
+					<img alt="screen capture" src="images/eg-style-high.png">
+					<figcaption lang="ko">
+						Fig. <span class="figno">13</span> <span class="fig-title">사용자 스타일 웹 페이지 - 제목 수준을 구별하기 위해 다른 폰트, 들여쓰기, 색상으로</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">13</span> <span class="fig-title">Web page with user style - with different fonts, indentation, and colors to differentiate heading levels</span>
+					</figcaption>
+				</figure>
+				<div class="issue" id="issue-6">
+					<div aria-level="5" class="issue-title marker" id="h-issue6" role="heading">
+						<span>이슈 6</span>
+					</div>
+					<p class="" lang="ko">
+						태스트 포스는 이 섹션에 추가적인 이미지 설명을 제공할 수 있습니다 - 삽화 내 사용자 맞춤의 글머릭기호가 붙은 목록을 포함하여.
+					</p>
+					<p class="" lang="en">
+						The Task Force may provide additional image descriptions in this section - including a bulleted list of the user customization in the figures.
+					</p>
+				</div>
+				<div class="advisement">
+					<h4 id="user-need---element-level-customization">
+						사용자 요구 - 요소 수준 맞춤화:
+					</h4>
+					<p lang="ko">
+						사용자는 헤딩, 목록, 문단 텍스트와 같은 특정한 요소에 대해 텍스트를 다르게 맞춤화 할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can customize text differently for specific elements, such as headings, lists, and paragraph text.
+					</p>
+					<p lang="ko">
+						사용자는 적어도 설정할 수 있습니다:
+					</p>
+					<p lang="en">
+						Users can set at least:
+					</p>
+					<ul lang="ko">
+						<li>
+							텍스트 크기
+						</li>
+						<li>
+							텍스트 색상과 배경 색상
+						</li>
+						<li>
+							폰트
+						</li>
+						<li>
+							텍스트 스타일(밑줄, 기울임, 굵게를 켜거나 끄는 것)
+						</li>
+						<li>
+							줄 간격
+						</li>
+						<li>
+							여백
+						</li>
+						<li>
+							테두리 — 선 색상, 두께, 스타일을 포함하여
+						</li>
+					</ul>
+					<ul lang="en">
+						<li>Text size
+						</li>
+						<li>Text color and background color
+						</li>
+						<li>Font
+						</li>
+						<li>Text style (that is, turn on or off underline, italic, bold)
+						</li>
+						<li>Leading
+						</li>
+						<li>Margins
+						</li>
+						<li>Borders — including border line color, width, style
+						</li>
+					</ul>
+				</div>
+			</section>
+		</section>
+		<section id="point-of-regard-and-proximity" property="bibo:hasPart" resource="#point-of-regard-and-proximity" typeof="bibo:Chapter">
+			<h3 id="h-point-of-regard-and-proximity" resource="#h-point-of-regard-and-proximity">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">3.6</span> 응시점과 근접</span>
+			</h3>
+			<p lang="ko">
+				응시점은 사용자가 보고 있는 영역입니다.
+				[<em>초안 메모:</em> 더 많은 정보가 사용가능합니다: <a href="https://www.w3.org/TR/UAAG20/#def-point-of-regard">UAAG 2 용어사전</a>과 IndieUI 위키. 태스트 포스는 아마 이 문서에 정의 용어 사전을 추가할 것입니다.]
+				근접은 항목 사이의 공간입니다.
+				일반적으로 유저 인터페이스에서, 근접은 연관된 콘텐트를 분류하고 관련 없는 콘텐트를 구분하기 위해 공백을 사용하는 것에 대한 것입니다.
+			</p>
+			<p lang="en">
+				The point of regard is the area that the user is viewing.<!-- @@clean up --> [<em>Draft Note:</em> More info is available in: <a href="https://www.w3.org/TR/UAAG20/#def-point-of-regard">UAAG 2 Glossary</a> and IndieUI wiki. The Task Force will probably add a glossary definition to this document.] Proximity is the space between items. In user interface generally, proximity is about using space to group related content and separate unrelated content.
+			</p>
+			<p lang="ko">
+				<a href="#visfie">시야</a> 섹션에서 논의된 대로, 일부 저시력자들은 한 번에 작은 양의 콘텐트와/또는 유저 인테페이스만이 보여집니다.
+			</p>
+			<p lang="en">
+				As discussed in the <a href="#visfie">Field of Vision</a> section, some people with low vision see only a small amount of content and/or the user interface at a time.
+			</p>
+			<div class="issue" id="issue-7">
+				<div aria-level="4" class="issue-title marker" id="h-issue7" role="heading">
+					<span>이슈 7</span>
+				</div>
+				<p class="" lang="ko">
+					태스트 포스는 응시점과 근접과 연관된 이 섹션에 추가적인 정보를 추가할 계획입니다.
+				</p>
+				<p class="" lang="en">
+					The Task Force plans to add additional information in this section related to point of regard and proximity.
+				</p>
+			</div>
+			<section id="maintain-point-of-regard" property="bibo:hasPart" resource="#maintain-point-of-regard" typeof="bibo:Chapter">
+				<h4 id="h-maintain-point-of-regard" resource="#h-maintain-point-of-regard">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.6.1</span> 응시점 유지</span>
+				</h4>
+				<p lang="ko">
+					때때로 사람들은 더 잘 읽기 위하여 콘텐트를 보여지게 하고 디스플레이를 변경해야만 합니다, 예를 들어, 텍스트를 크게 만드는.
+					읽고 있는 위치("응시점"이라고 불립니다)가 많이 변경한다면, 그들의 위치를 잃어버리고, 특히 작은 가시 영역과 큰 텍스트에서, 다시 그들의 위치를 찾는 것은 매우 어려울 수 있습니다.
+				</p>
+				<p lang="en">
+					Sometimes people will be viewing content and need to change the display to read it better, for example, make the text larger. If the place where they are reading (called “point of regard”) changes much, they lose their place and, especially with a small visible area and large text, it can be very difficult to find their place again.
+				</p>
+				<p lang="ko">
+					이슈들 예:
+				</p>
+				<p lang="en">
+					Example issues:
+				</p>
+				<ul lang="ko">
+					<li>
+						마우스 호버가 응시점을 변경하지만, 손실 됩니다.
+						화면 확대 사용자가 팝업으로 이미지, 약어, 다른 것의 위를 헤맵니다.
+						팝업이 그들의 뷰어보다 큽니다.
+						사용자가 읽기 위해 스크롤할 때, 포커스를 잃어버리고 사라집니다.
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>Mouse hover changes point of regard, but is lost. Screen magnification user hovers over image, acronym, or other thing with pop-up. The pop-up is larger than their view. When the user scrolls to read it, it loses focus and disappears.
+					</li>
+				</ul>
+				<div class="advisement">
+					<h4 id="user-need---point-of-regard">
+						사용자 요구 - 응시점:
+					</h4>
+					<p lang="ko">
+						뷰포트가 크기가 조정되거나, 콘텐트가 확대 혹은 축소되거나, 콘텐트 형식이 변경될 때 응시점은 뷰포트 내에 보이게 남습니다.
+					</p>
+					<p lang="en">
+						The point of regard remains visible within the viewport when the viewport is resized, when content is zoomed or scaled, or when content formatting is changed.
+					</p>
+				</div>
+			</section>
+			<section id="proximity-of-related-information" property="bibo:hasPart" resource="#proximity-of-related-information" typeof="bibo:Chapter">
+				<h4 id="h-proximity-of-related-information" resource="#h-proximity-of-related-information">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.6.2</span> 관련 정보의 근접</span>
+				</h4>
+				<p lang="ko">
+					제한된 시야를 가진 사람들이나 큰 텍스트를 사용하는 사람은 한 번에 그들 시야에 적은 양을 가집니다.
+					관련 정보가 함께 가깝지 않다면, 그들은 그것에 대해 알고, 그것을 보고, 그것을 사용하는데 문제를 가질 수 있습니다.
+					대부분의 경우에, 최선은 :
+				</p>
+				<p lang="en">
+					People with limited field of vision or who use large text have little in their field of view at one time. If related information is not close together, they can have trouble knowing about it, seeing it, and using it. In most cases, it is best if:
+				</p>
+				<ul lang="ko">
+					<li>
+						관련 정보는 — 레이블과 컨트롤, 두 컬럼 내 대응하는 검사나 피드백 같은 — 인접합니다.
+					</li>
+					<li>
+						피드백은 사용자의 시각적 초점에 인접합니다.
+					</li>
+					<li>
+						대화 상자와 팝업 메세지 같은 다른 것들은 사용자 응시점에 나타납니다.
+					</li>
+					<li>
+						사용자는 그들의 뷰 밖에 있을 수 있는 새로운 정보가 통보됩니다. — 백그라운드에서 열리는 새로운 브라우저 탭 같은.
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>Related information — such as labels and controls, or matching tests in two columns, or feedback — is in close proximity.
+					</li>
+					<li>Feedback is in close proximity to the user’s visual focus.
+					</li>
+					<li>Dialog boxes and other such pop-up messages appear over the users point of regard.
+					</li>
+					<li>Users are informed of new information that may be outside of their view — such as a new browser tab opening in the background.
+					</li>
+				</ul>
+				<div class="advisement">
+					<h4 id="user-need---related-information">
+						사용자 요구 - 관련 정보:
+					</h4>
+					<p lang="ko">
+						사용자는 관련 정보에 대해 알고 찾을 수 있습니다.
+					</p>
+					<p lang="en">
+						Users know about and can find related information.
+					</p>
+				</div>
+			</section>
+		</section>
+		<section id="work-with-user-settings" property="bibo:hasPart" resource="#work-with-user-settings" typeof="bibo:Chapter">
+			<h3 id="h-work-with-user-settings" resource="#h-work-with-user-settings">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">3.7</span> 사용자 설정에 의한 작업</span>
+			</h3>
+			<section id="seeing-all-interface-elements" property="bibo:hasPart" resource="#seeing-all-interface-elements" typeof="bibo:Chapter">
+				<h4 id="h-seeing-all-interface-elements" resource="#h-seeing-all-interface-elements">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.7.1</span> 모든 인터페이스 요소들 보기</span>
+				</h4>
+				<p lang="ko">
+					사람들이 텍스트 크기를 증가시키거나, 줄간격을 증가시키거나, 다른 텍스트 디스플레이 측면을 테스트만 확대 혹은 다른 텍스트 설정을 통해 변경할 경우, 좋지 않게 설계된 콘텐트는 사용할 수 없게 될 수 있습니다.
+					예를 들어, 웹 페이지 내 텍스트 영역에서, 때로는 열과 섹션이 겹치거나,  줄 사이 공백이 보이지 않게 되거나, 텍스트 라인이 너무 길어지거나, 텍스트가 보이지 않게 됩니다.
+				</p>
+				<p lang="en">
+					When people increase text size, increase leading, or change other text display aspects through text-only zoom or other text settings, content that is poorly designed can become unusable. For example, with text areas in web pages, sometimes columns and sections overlap, the space between lines disappears, lines of text become too long, or text disappears.
+				</p>
+				<figure id="fig-example-showing-that-when-text-size-is-increased-the-heading-overlaps-the-main-text-the-main-text-overlaps-the-sidebar-text-and-the-sidebar-text-is-cut-off-at-the-bottom.x">
+					<div>
+						<img alt="web page with default text size" src="images/zoom-100.png"> <img alt="web page with larger text" src="images/zoom-overlap.png">
+					</div>
+					<figcaption lang="ko">
+						Fig. <span class="figno">14</span> <span class="fig-title">예가 보여주는 것은 텍스트 크기가 증가되는 경우, 제목이 본문 텍스트와 겹치고, 본문 텍스트가 사이드바 텍스트와 겹치고, 사이드바 텍스트가 바닥이 잘리는 것입니다.</span>
+					</figcaption>
+					<figcaption lang="en">
+						Fig. <span class="figno">14</span> <span class="fig-title">Example showing that when text size is increased, the heading overlaps the main text, the main text overlaps the sidebar text, and the sidebar text is cut off at the bottom.</span>
+					</figcaption>
+				</figure>
+				<p lang="ko">
+					종종 텍스트 영역에 대해 자동으로 텍스트에 맞게 크기를 조정하고, 사용자에 대해 텍스트 영역의 크기를 변경할 수 있게 하는 것이 최선입니다.
+					영역들이 모든 콘텐트를 수용하도록 크기가 변경될 수 없는 경우, 일반적으로 스크롤바가 사용될 수 있어야 합니다.
+					또한 <a href="#rewrap-for-one-direction-scrolling">한 방향 스크롤링을 위한 재포장</a> 섹션을 참고하세요.
+				</p>
+				<p lang="en">
+					Often it is best for text areas to automatically resize to fit the text, and for users to be able to change the size of text areas. When the areas cannot be resized to accommodate all content, usually a scrollbar should be available. See also&nbsp;the <a href="#rewrap-for-one-direction-scrolling">Rewrap for one direction scrolling</a> section.
+				</p>
+				<p lang="ko">
+					사람들이 큰 폰트나 낮은 스크린 해상도를 사용하는 경우, 대화 상자가 뷰포트 내에 없는 정보를 포함하는 것은 드문 일이 아닙니다.
+					그러한 경우, 보통 대화 상자에 대해 스크롤 바가 제공되는 것이 가장 좋은 사례입니다.
+				</p>
+				<p lang="en">
+					When people use large fonts or lower screen resolution, it is not uncommon for dialog boxes to include information that is not in the viewport. In such cases, it is usually best practice for scrollbars to be provided for the dialog box.
+				</p>
+				<p lang="ko">
+					[<em>초안 메모:</em> 추가될 가능성이 있는 삽화: 대화 상자 잘림 예]
+				</p>
+				<p lang="en">
+					[<em>Draft Note:</em> Possible figure to be added: example dialog box cut off]
+				</p>
+				<p lang="ko">
+					사용자가 인터페이스 내에 있는 경우, 스크롤바는 일반적으로 통신의 추가적인 이득을 제공합니다.
+				</p>
+				<p lang="en">
+					Scrollbars generally provide the additional benefit of communicating where the user is in an interface.
+				</p>
+				<p lang="ko">
+					어떤 사용자는 그들의 운영체제에서 또는 화면 확대 소프트웨어로 마우스 포인터의 크기를 증가시킵니다.
+					이것 들은 툴팁 텍스트를 보기 어렵게 하지 않아야 합니다.
+				</p>
+				<p lang="en">
+					Some users increase the size of mouse pointers in their operating system or with screen magnification software. These should not obscure tooltip text.
+				</p>
+				<p lang="ko">
+					[<em>초안 노트:</em> 추가될 가능성이 있는 삽화: 호버 핸드가 중요한 툴팁 텍스트를 보기 어렵게 함]
+				</p>
+				<p lang="en">
+					[<em>Draft Note:</em> Possible figure to be added: hover hand obscures important tooltip text]
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---all-elements">
+						사용자 요구 - 모든 요소들:
+					</h4>
+					<p lang="ko">
+						사용자는 사용자가 텍스트 크기 같은 디스플레이 설정을 변경한 경우를 포함하여 사용자가 보는 것을 위해 의도된 모든 인터페이스 요소들을 볼 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can see all interface elements that are intended for users to see, including when users have changed display settings such as text size.
+					</p>
+				</div>
+			</section>
+			<section id="printing-customized-text" property="bibo:hasPart" resource="#printing-customized-text" typeof="bibo:Chapter">
+				<h4 id="h-printing-customized-text" resource="#h-printing-customized-text">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.7.2</span> 인쇄 사용자 정의 텍스트</span>
+				</h4>
+				<p lang="ko">
+					어떤 사람들에게는 컴퓨터에서 텍스트를 읽는 것이 어렵습니다; 그들은 그것을 읽기 위해 종이에 전자 텍스트를 인쇄 할 수 있어야 합니다.
+					예를 들어:
+				</p>
+				<p lang="en">
+					It is difficult for some people to read text on the computer; they need to be able to print electronic text on paper in order to read it. For example:
+				</p>
+				<ul lang="ko">
+					<li>
+						어떤 사람들에게 컴퓨터 모니터에서 읽기 위해 필요한 물리적 위치에 있는 것이 불편하거나 통증을 수반합니다. 예를 들어, 어떤 저시력자들은 화면에서 1인치 떨어져야 합니다.
+						어떤 사람들은 모바일 기기를 가지고 있는 반면, 다른 누군가는 옮기기 어려운 모니터만을 가지고 있거나, 공용 단말기를 사용합니다.
+					</li>
+					<li>
+						어떤 사람들은 인쇄하여 주위의 텍스트를 차단할 수 있습니다; 예를 들어, 그들은 읽고 있는 곳 아래 라인을 가리기 위해 읽을 때 종이 한장을 밀어 넣습니다.
+						어떤 사람들은 색 오버레이가 필요합니다.
+					</li>
+					<li>
+						때때로 사람들은 컴퓨터로부터 떨어져서 사용하기 위해 인쇄해야 합니다. 예를 들어, 프리젠테이션 노트, 레서피, 수리 지침.
+					</li>
+				</ul>
+				<ul lang="en">
+					<li>It is uncomfortable or painful for some people to be in the physical position required for reading on a computer monitor, for example, some people with low vision need to be an inch away from the display. While some people have mobile devices, others have only a monitor that is difficult to move, or use a public terminal.
+					</li>
+					<li>Some people print so they can block out surrounding text; for example, they slide a sheet of paper down as they read to cover up the line below where they are reading. Some people need colored overlays.
+					</li>
+					<li>Sometimes people need to print text to use it away from the computer, for example, presentation notes, recipes, and repair instructions.
+					</li>
+				</ul>
+				<div class="advisement">
+					<h4 id="user-need---printing">
+						사용자 요구 - 인쇄:
+					</h4>
+					<p lang="ko">
+						사용자는 텍스트가 표현되는 방법을 지정한 이후 콘텐트를 인쇄할 수 있습니다.
+					</p>
+					<p lang="en">
+						Users can print content after customizing how the text is displayed.
+					</p>
+				</div>
+			</section>
+			<section id="using-user-settings" property="bibo:hasPart" resource="#using-user-settings" typeof="bibo:Chapter">
+				<h4 id="h-using-user-settings" resource="#h-using-user-settings">
+					<span property="xhv:role" resource="xhv:heading"><span class="secno">3.7.3</span> 사용자 설정 사용</span>
+				</h4>
+				<p lang="ko">
+					대부분의 운영체제는 사용자가 설정하는 것을 허용합니다 ... [<em>초안 메모:</em> 태스크 포스는 여기에 추가적인 정보를 추가할 계획이 있습니다.]
+				</p>
+				<p lang="en">
+					Most operating systems allow users to set ... [<em>Draft Note:</em> The Task Force plans to add additional information here.]
+				</p>
+				<p lang="ko">
+					대부분의 브라우저는 사용자가 설정하는 것을 허용합니다 ... [<em>초안 메모:</em> 태스크 포스는 여기에 추가적인 정보를 추가할 계획이 있습니다.]
+				</p>
+				<p lang="en">
+					Most browsers allow users to set ... [<em>Draft Note:</em> The Task Force plans to add additional information here.]
+				</p>
+				<div class="advisement">
+					<h4 id="user-need---user-settings">
+						사용자 요구 - 사용자 설정:
+					</h4>
+					<p lang="ko">
+						콘텐트는 다음과 같은 모든 관련 사용자 설정을 선택합니다 ... [<em>초안 메모:</em> 태스크 포스는 여기에 추가적인 정보를 추가할 계획이 있습니다.]
+					</p>
+					<p lang="en">
+						Content picks up all relevant user settings, such as ... [<em>Draft Note:</em> The Task Force plans to add additional information here.]
+					</p>
+				</div>
+			</section>
+		</section>
+	</section>
+	<section class="appendix" id="acknowledgments" property="bibo:hasPart" resource="#acknowledgments" typeof="bibo:Chapter">
+		<!--OddPage-->
+		<h2 id="h-acknowledgments" resource="#h-acknowledgments">
+			<span property="xhv:role" resource="xhv:heading"><span class="secno">A.</span> 감사의 말</span>
+		</h2>
+		<h2 id="low-vision-task-force">
+			저시력 태스트 포스
+		</h2>
+		<p lang="ko">
+			문서 개발:
+		</p>
+		<p lang="en">
+			Document development:
+		</p>
+		<ul lang="ko">
+			<li>Task Force Facilitators: Jim Allan, Andrew Kirkpatrick
+			</li>
+			<li>
+				<abbr title="World Wide Web Consortium">W3C</abbr> Staff Contacts: Michael Cooper, Shawn Lawton Henry
+			</li>
+			<li>Editor: Shawn Lawton Henry
+			</li>
+			<li>Content drafters: Jim Allan, Laura Carlson, Wayne Dick, Shawn Lawton Henry, Andrew Kirkpatrick
+			</li>
+			<li>Code editors<!-- and copy editors -->: Michael Cooper, Andrew Kirkpatrick
+			</li>
+		</ul>
+		<ul lang="en">
+			<li>태스트 포스 퍼실리테이터: Jim Allan, Andrew Kirkpatrick
+			</li>
+			<li>
+				<abbr title="World Wide Web Consortium">W3C</abbr> 스태프 연락: Michael Cooper, Shawn Lawton Henry
+			</li>
+			<li>편집자: Shawn Lawton Henry
+			</li>
+			<li>콘텐트 초안 작성자: Jim Allan, Laura Carlson, Wayne Dick, Shawn Lawton Henry, Andrew Kirkpatrick
+			</li>
+			<li>코드 편집자<!-- and copy editors -->: Michael Cooper, Andrew Kirkpatrick
+			</li>
+		</ul>
+		<p lang="ko">
+			태스크 포스 기여자:
+		</p>
+		<p lang="en">
+			Task Force contributors:
+		</p>
+		<ul>
+			<li>Jim Allan
+			</li>
+			<li>Jonathan Avila (SSB BART Group)
+			</li>
+			<li>Bruce Bailey
+			</li>
+			<li>Laura Carlson
+			</li>
+			<li>Srinivasu Chakravarthula (Deque Systems, Inc.)
+			</li>
+			<li>Wayne Dick (Knowbility, Inc)
+			</li>
+			<li>Katie Haritos-Shea (Knowbility, Inc)
+			</li>
+			<li>Shawn Lawton Henry
+			</li>
+			<li>Andrew Kirkpatrick (Adobe Systems Inc.)
+			</li>
+			<li>Erich Manser (IBM Corporation)
+			</li>
+			<li>John Rochford
+			</li>
+			<li>Alan Smith
+			</li>
+			<li>Jeanne Spellman
+			</li>
+		</ul>
+		<h2 id="enabling-funders">
+			자금 제공자 조성
+		</h2>
+		<p lang="ko">
+			이 발행물은 계약 HHSP23301500054 하에 미국 보건 사회 복지부, 국립장애자립생활재활연구소(NIDILRR)로부터 연방 기금의 일부에서 지원을 받고 있습니다.
+			이 발행물의 콘텐트는 필연적으로 미국 보건 사회 복지부의 견해나 공식 정책을 반영하지 않고, 상품명, 상용 제품, 기관의 언급이 미국 정부에 의해 지지를 받는 것도 아닙니다.<br>
+		</p>
+		<p lang="en">
+			This publication has been funded in part with Federal funds from the U.S. Department of Health and Human Services, National Institute on Disability Independent Living and Rehabilitation Research (NIDILRR) under&nbsp;contract HHSP23301500054. The content of this publication does not necessarily reflect the views or official policies of the U.S. Department of Health and Human Services, nor does mention of trade names, commercial products, or organizations imply endorsement by the U.S. Government.<br>
+		</p>
+	</section>
+	<section class="appendix" id="references" property="bibo:hasPart" resource="#references" typeof="bibo:Chapter">
+		<!--OddPage-->
+		<h2 id="h-references" resource="#h-references">
+			<span property="xhv:role" resource="xhv:heading"><span class="secno">B.</span> 참조</span>
+		</h2>
+		<section id="informative-references" property="bibo:hasPart" resource="#informative-references" typeof="bibo:Chapter">
+			<h3 id="h-informative-references" resource="#h-informative-references">
+				<span property="xhv:role" resource="xhv:heading"><span class="secno">B.1</span> 유용한 참조</span>
+			</h3>
+			<dl class="bibliography" resource="">
+				<dt id="bib-WHO-VI">
+					[WHO-VI]
+				</dt>
+				<dd>
+					시계 보건 기구 (WHO). <a href="http://www.who.int/mediacentre/factsheets/fs282/en/" property="dc:references"><cite>시각 장애와 실명, 자료표 N°282</cite></a>. 2014년 8월 업데이트. URL: <a href="http://www.who.int/mediacentre/factsheets/fs282/en/" property="dc:references">http://www.who.int/mediacentre/factsheets/fs282/en/</a>
+				</dd>
+			</dl>
+		</section>
+	</section>
+	<p id="back-to-top" role="navigation">
+		<a href="#toc"><abbr title="Back to Top">↑</abbr></a>
+	</p>
+	<script async defer src="https://www.w3.org/scripts/TR/2016/fixup.js">
+	</script>
+</body>
+</html>
